@@ -1,0 +1,50 @@
+[
+    {
+        "Username": "slick",
+        "Email": "bgn_slick@gmail.com",
+        "Budget": 560,
+        "Created": "2019-08-02",
+        "LastActive": "2020-04-18",
+        "PhotoUrl": "https://avatarfiles.alphacoders.com/574/thumb-57415.png"
+    },
+    {
+        "Username": "jenna",
+        "Email": "jenny_rose@gmail.com",
+        "Budget": 170,
+        "Created": "2020-01-29",
+        "LastActive": "2020-06-11",
+        "PhotoUrl": "https://avatarfiles.alphacoders.com/604/thumb-60454.png"
+    },
+    {
+        "Username": "katya",
+        "Email": "kty_gamer@gmail.com",
+        "Budget": 290,
+        "Created": "2018-12-20",
+        "LastActive": "2020-02-15",
+        "PhotoUrl": "https://avatarfiles.alphacoders.com/594/thumb-59464.jpg"
+    },
+    {
+        "Username": "sean1st",
+        "Email": "sean_designs@gmail.com",
+        "Budget": 125,
+        "Created": "2019-07-27",
+        "LastActive": "2020-05-08",
+        "PhotoUrl": "https://avatarfiles.alphacoders.com/472/thumb-47266.jpg"
+    },
+    {
+        "Username": "ben_1998",
+        "Email": "benstevens@gmail.com",
+        "Budget": 300,
+        "Created": "2020-03-30",
+        "LastActive": "2020-06-12",
+        "PhotoUrl": "https://avatarfiles.alphacoders.com/464/thumb-46477.png"
+    },
+    {
+        "Username": "letty",
+        "Email": "letty.arts@gmail.com",
+        "Budget": 300,
+        "Created": "2020-03-30",
+        "LastActive": "2020-06-12",
+        "PhotoUrl": "https://avatarfiles.alphacoders.com/523/thumb-52386.jpg"
+    }
+]

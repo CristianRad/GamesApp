@@ -1,0 +1,98 @@
+[
+    {
+        "Title": "FIFA 20",
+        "Type": 5,
+        "Year": 2019,
+        "Price": 45,
+        "Multiplayer": true,
+        "PhotoUrl": "https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-20/common/buy/fifapre20-standard-pc.jpg"
+    },
+    {
+        "Title": "Forza Horizon 4",
+        "Type": 2,
+        "Year": 2018,
+        "Price": 50,
+        "Multiplayer": true,
+        "PhotoUrl": "https://ucuzrandomkey.com/wp-content/uploads/2020/04/forza-4.jpg"
+    },
+    {
+        "Title": "Grand Theft Auto V",
+        "Type": 0,
+        "Year": 2013,
+        "Price": 35,
+        "Multiplayer": true,
+        "PhotoUrl": "https://www.gtabase.com/igallery/601-700/GTA_V_Cover_PC-653-1920.jpg"
+    },
+    {
+        "Title": "Hitman Absolution",
+        "Type": 0,
+        "Year": 2012,
+        "Price": 30,
+        "Multiplayer": false,
+        "PhotoUrl": "https://images-na.ssl-images-amazon.com/images/I/81RxcbQ0o8L._AC_SL1500_.jpg"
+    },
+    {
+        "Title": "Tomb Raider",
+        "Type": 1,
+        "Year": 2011,
+        "Price": 25,
+        "Multiplayer": false,
+        "PhotoUrl": "https://images-na.ssl-images-amazon.com/images/I/91NlL7n9U4L._SL1500_.jpg"
+    },
+    {
+        "Title": "Sims 4",
+        "Type": 3,
+        "Year": 2014,
+        "Price": 30,
+        "Multiplayer": false,
+        "PhotoUrl": "https://statscmain-10b33.kxcdn.com/wp-content/uploads/2019/07/boxart-724x1024.jpg"
+    },
+    {
+        "Title": "Call Of Duty Modern Warfare",
+        "Type": 0,
+        "Year": 2019,
+        "Price": 60,
+        "Multiplayer": true,
+        "PhotoUrl": "https://s3.gaming-cdn.com/images/products/4394/orig/call-of-duty-modern-warfare-cover.jpg"
+    },
+    {
+        "Title": "F1 2019",
+        "Type": 5,
+        "Year": 2019,
+        "Price": 50,
+        "Multiplayer": true,
+        "PhotoUrl": "https://britgamer.s3.eu-west-1.amazonaws.com/s3fs-public/styles/cover_art/public/2020-02/f1-2019-cover.jpg?itok=F0aEoELe"
+    },
+    {
+        "Title": "Red Dead Redemption 2",
+        "Type": 0,
+        "Year": 2018,
+        "Price": 55,
+        "Multiplayer": true,
+        "PhotoUrl": "https://images-na.ssl-images-amazon.com/images/I/71nlEoSrewL._AC_SL1200_.jpg"
+    },
+    {
+        "Title": "Saints Row The Third Remastered",
+        "Type": 0,
+        "Year": 2020,
+        "Price": 40,
+        "Multiplayer": true,
+        "PhotoUrl": "https://www.mobygames.com/images/covers/l/660462-saints-row-the-third-remastered-xbox-one-front-cover.jpg"
+    },
+    {
+        "Title": "Civilization VI",
+        "Type": 6,
+        "Year": 2016,
+        "Price": 20,
+        "Multiplayer": false,
+        "PhotoUrl": "https://mms.businesswire.com/media/20181120005072/en/691413/5/2KGMKT_CIV6_GATHERINGSTORM_FOB_ESRB.jpg"
+    },
+    {
+        "Title": "Need For Speed Heat",
+        "Type": 2,
+        "Year": 2019,
+        "Price": 65,
+        "Multiplayer": false,
+        "PhotoUrl": "https://s2.gaming-cdn.com/images/products/5362/orig/need-for-speed-heat-cover.jpg"
+    }
+]

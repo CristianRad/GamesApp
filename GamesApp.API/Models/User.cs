@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 namespace GamesApp.API.Models
 {
     public class User
@@ -6,5 +9,12 @@ namespace GamesApp.API.Models
         public string Username { get; set; }
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
+        public string Email { get; set; }
+        public int Budget { get; set; }
+        public DateTime Created { get; set; }
+        public DateTime LastActive { get; set; }
+        public string PhotoUrl { get; set; }
+        public ICollection<PurchasedGame> PurchasedGames { get; set; }
+        public ICollection<UserComment> UserComments { get; set; }
     }
 }
