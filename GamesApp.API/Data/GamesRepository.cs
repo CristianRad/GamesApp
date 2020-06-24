@@ -26,7 +26,7 @@ namespace GamesApp.API.Data
         public async Task<Game> GetGame(int id)
         {
             var game = await _context.Games
-                .Include(g => g.UserComments)
+                .Include(g => g.Screenshots)
                 .FirstOrDefaultAsync(g => g.Id == id);
 
             return game;
@@ -34,9 +34,7 @@ namespace GamesApp.API.Data
 
         public async Task<IEnumerable<Game>> GetGames()
         {
-            var games = await _context.Games
-                .Include(g => g.UserComments)
-                .ToListAsync();
+            var games = await _context.Games.ToListAsync();
 
             return games;
         }

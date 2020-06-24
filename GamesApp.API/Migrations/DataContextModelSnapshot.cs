@@ -42,6 +42,9 @@ namespace GamesApp.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
                     b.Property<bool>("Multiplayer")
                         .HasColumnType("INTEGER");
 
@@ -78,6 +81,28 @@ namespace GamesApp.API.Migrations
                     b.HasIndex("GameId");
 
                     b.ToTable("PurchasedGames");
+                });
+
+            modelBuilder.Entity("GamesApp.API.Models.Screenshot", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("GameId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GameId");
+
+                    b.ToTable("Screenshots");
                 });
 
             modelBuilder.Entity("GamesApp.API.Models.User", b =>
@@ -170,6 +195,15 @@ namespace GamesApp.API.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("GamesApp.API.Models.Screenshot", b =>
+                {
+                    b.HasOne("GamesApp.API.Models.Game", "Game")
+                        .WithMany("Screenshots")
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("GamesApp.API.Models.UserComment", b =>
                 {
                     b.HasOne("GamesApp.API.Models.Comment", "Comment")
@@ -179,7 +213,7 @@ namespace GamesApp.API.Migrations
                         .IsRequired();
 
                     b.HasOne("GamesApp.API.Models.Game", "Game")
-                        .WithMany()
+                        .WithMany("UserComments")
                         .HasForeignKey("GameId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

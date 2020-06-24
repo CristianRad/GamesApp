@@ -10,6 +10,7 @@ namespace GamesApp.API.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Game> Games { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Screenshot> Screenshots { get; set; }
         public DbSet<PurchasedGame> PurchasedGames { get; set; }
         public DbSet<UserComment> UserComments { get; set; }
 

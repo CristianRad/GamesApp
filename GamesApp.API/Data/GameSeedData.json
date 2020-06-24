@@ -1,98 +1,242 @@
 [
     {
         "Title": "FIFA 20",
+        "Description": "EA SPORTS™ FIFA 20 for PC brings two sides of The World’s Game to life: the prestige of the professional stage and an all-new street football experience in EA SPORTS VOLTA FOOTBALL. FIFA 20 innovates across the game, FOOTBALL INTELLIGENCE unlocks an unprecedented platform for gameplay realism, FIFA Ultimate Team™ offers more ways to build your dream squad and EA SPORTS VOLTA FOOTBALL returns the game to the streets with an authentic form of small-sided football.",
         "Type": 5,
         "Year": 2019,
         "Price": 45,
         "Multiplayer": true,
-        "PhotoUrl": "https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-20/common/buy/fifapre20-standard-pc.jpg"
+        "PhotoUrl": "https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-20/common/buy/fifapre20-standard-pc.jpg",
+        "Screenshots": [
+            {
+                "url": "https://i1.wp.com/www.newsgroove.co.uk/wp-content/uploads/2019/10/FIFA-20-Ultimate-Team-stands-with-Premier-League%E2%80%99s-No-Room-For-Racism.jpg?fit=500%2C500&ssl=1"
+            },
+            {
+                "url": "https://www.femalefirst.co.uk/image-library/square/500/f/fifa-20-gameplay-natural-player.jpg"
+            },
+            {
+                "url": "https://www.femalefirst.co.uk/image-library/square/500/f/fifa-19-active-touch-kevin-de-bruyne.jpg"
+            }
+        ]
     },
     {
         "Title": "Forza Horizon 4",
+        "Description": "Forza Horizon 4 features dynamic seasons that change gameplay, unlocking new events and routes, impacting driving conditions, and transforming open-world exploration. Players will be able to master driving in dry, wet, muddy, snowy and icy conditions in a shared world where everyone experiences changes in time of day, weather and seasons together.",
         "Type": 2,
         "Year": 2018,
         "Price": 50,
         "Multiplayer": true,
-        "PhotoUrl": "https://ucuzrandomkey.com/wp-content/uploads/2020/04/forza-4.jpg"
+        "PhotoUrl": "https://ucuzrandomkey.com/wp-content/uploads/2020/04/forza-4.jpg",
+        "Screenshots": [
+            {
+                "url": "https://cdn.vox-cdn.com/thumbor/aoFlzkK4dJdo7XCInYdFu5Q1mdc=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/19393623/d89cb144_b947_463a_abc9_38c019611f77.jpg"
+            },
+            {
+                "url": "https://i.guim.co.uk/img/media/a977ce434e85ee51897d6731820690bdb1b01ae9/370_290_3090_1854/master/3090.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=a7e2ac646e7103632d18d7766394d468"
+            },
+            {
+                "url": "https://avatarfiles.alphacoders.com/191/191751.jpg"
+            }
+        ]
     },
     {
         "Title": "Grand Theft Auto V",
+        "Description": "When a young street hustler, a retired bank robber and a terrifying psychopath land themselves in trouble, they must pull off a series of dangerous heists to survive in a city in which they can trust nobody, least of all each other. The biggest, most dynamic and most diverse open world ever created, Grand Theft Auto V blends storytelling and gameplay in new ways as players repeatedly jump in and out of the lives of the game’s three lead characters, playing all sides of the game’s interwoven story.",
         "Type": 0,
         "Year": 2013,
         "Price": 35,
         "Multiplayer": true,
-        "PhotoUrl": "https://www.gtabase.com/igallery/601-700/GTA_V_Cover_PC-653-1920.jpg"
+        "PhotoUrl": "https://www.gtabase.com/igallery/601-700/GTA_V_Cover_PC-653-1920.jpg",
+        "Screenshots": [
+            {
+                "url": "https://cdn.gtaboom.com/wp-content/uploads/2015/10/007.jpg"
+            },
+            {
+                "url": "https://cdn1.greatfon.com/crop/uploads/picture/968/4968/gta-5-los-santos-policiya.jpg?width=1024&height=1024"
+            },
+            {
+                "url": "https://cdn.vox-cdn.com/thumbor/zOYoYdDxR5NRvATouqqmagwHC3Y=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/19969493/448_3840.jpg"
+            }
+        ]
     },
     {
         "Title": "Hitman Absolution",
+        "Description": "Hitman Absolution follows Agent 47, a cold blooded assassin, who takes on his most dangerous contract to date. Betrayed by those he trusted and hunted by the police, he finds himself at the centre of a dark conspiracy and must embark on a personal journey through a corrupt and twisted world, in his search for the truth.",
         "Type": 0,
         "Year": 2012,
         "Price": 30,
         "Multiplayer": false,
-        "PhotoUrl": "https://images-na.ssl-images-amazon.com/images/I/81RxcbQ0o8L._AC_SL1500_.jpg"
+        "PhotoUrl": "https://images-na.ssl-images-amazon.com/images/I/81RxcbQ0o8L._AC_SL1500_.jpg",
+        "Screenshots": [
+            {
+                "url": "https://cdn.vox-cdn.com/thumbor/cR0DlLvRTfdc5Q3hhy3vGXGCnh4=/62x0:737x450/1400x1400/filters:focal(62x0:737x450):format(jpeg)/cdn.vox-cdn.com/uploads/chorus_image/image/1958625/003eweyw-800px.0.jpg"
+            },
+            {
+                "url": "https://cdn.shopify.com/s/files/1/0875/3268/products/Hitman-Absolution-PC-Game-Steam-CD-Key-Screenshot-2_grande.jpg?v=1496112032"
+            },
+            {
+                "url": "https://images.wallpapersden.com/image/download/hitman-absolution-mr-47-agent-47_12404_1224x1224.jpg"
+            }
+        ]
     },
     {
-        "Title": "Tomb Raider",
+        "Title": "Shadow Of The Tomb Raider",
+        "Description": "In Shadow of the Tomb Raider, Lara must master a deadly jungle, overcome terrifying tombs, and persevere through her darkest hour. As she races to save the world from a Maya apocalypse, Lara will be forged into the Tomb Raider she is destined to be. ",
         "Type": 1,
-        "Year": 2011,
-        "Price": 25,
+        "Year": 2018,
+        "Price": 40,
         "Multiplayer": false,
-        "PhotoUrl": "https://images-na.ssl-images-amazon.com/images/I/91NlL7n9U4L._SL1500_.jpg"
+        "PhotoUrl": "https://cdn.shopify.com/s/files/1/0747/3829/products/mL2605.jpg?v=1571445549",
+        "Screenshots": [
+            {
+                "url": "https://cdn.vox-cdn.com/thumbor/aCMfJ6vvB34Es9KnIBJ6cXTvi3E=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/13059251/top.jpg"
+            },
+            {
+                "url": "https://cdn.vox-cdn.com/thumbor/V8DKpY8COkum2SkNOfMB34JTLRY=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/12880297/shadow_of_the_tomb_raider_screenshot_01_3840.jpg"
+            },
+            {
+                "url": "https://images.hdqwalls.com/download/shadow-of-the-tomb-raider-video-game-4k-xo-2048x2048.jpg"
+            }
+        ]
     },
     {
         "Title": "Sims 4",
+        "Description": "The Sims 4 is the highly anticipated life simulation game that lets you play with life like never before. Control smarter Sims with unique appearances, personalities, behaviors, and emotions. Control the mind, body, and heart of your Sims and explore your new gameplay possibilities in vibrant neighborhoods that bring your stories to life.",
         "Type": 3,
         "Year": 2014,
         "Price": 30,
         "Multiplayer": false,
-        "PhotoUrl": "https://statscmain-10b33.kxcdn.com/wp-content/uploads/2019/07/boxart-724x1024.jpg"
+        "PhotoUrl": "https://statscmain-10b33.kxcdn.com/wp-content/uploads/2019/07/boxart-724x1024.jpg",
+        "Screenshots": [
+            {
+                "url": "https://cdn.vox-cdn.com/thumbor/yHTJrJ6QUTBTTC1n_c-d4Dc3JRo=/1400x1400/filters:format(png)/cdn.vox-cdn.com/uploads/chorus_asset/file/20018885/Screenshot__492_.png"
+            },
+            {
+                "url": "https://cdn.vox-cdn.com/thumbor/eai3QpnZdaQkdamCZE247zr9IE4=/1400x1400/filters:format(png)/cdn.vox-cdn.com/uploads/chorus_asset/file/20026313/sims_4_eco_living_expansion.png"
+            },
+            {
+                "url": "https://d.newsweek.com/en/full/1215641/sims-4-get-famous.jpg?w=1600&h=1600&q=88&f=582288b466f5f349d7c7dfcb342d88d5"
+            }
+        ]
     },
     {
         "Title": "Call Of Duty Modern Warfare",
+        "Description": "The stakes have never been higher as players take on the role of lethal Tier One operators in a heart-racing saga that will affect the global balance of power. In Call of Duty: Modern Warfare players will engage in breathtaking covert operations alongside a diverse cast of international special forces and freedom fighters throughout iconic European cities and volatile expanses of the Middle East.",
         "Type": 0,
         "Year": 2019,
         "Price": 60,
         "Multiplayer": true,
-        "PhotoUrl": "https://s3.gaming-cdn.com/images/products/4394/orig/call-of-duty-modern-warfare-cover.jpg"
+        "PhotoUrl": "https://s3.gaming-cdn.com/images/products/4394/orig/call-of-duty-modern-warfare-cover.jpg",
+        "Screenshots": [
+            {
+                "url": "https://cdn.vox-cdn.com/thumbor/6wnCHui-CU9RKgQCiwHs6hJKhZM=/1400x1400/filters:format(png)/cdn.vox-cdn.com/uploads/chorus_asset/file/16308415/MW_Reveal_04_wm.png"
+            },
+            {
+                "url": "https://www.techadvisor.co.uk/cmsdata/features/3776363/call_of_duty_modern_warfare_review_thumb900_1-1.jpeg"
+            },
+            {
+                "url": "https://cdn.windowsreport.com/wp-content/uploads/2016/11/call-of-duty-modern-warfare.jpg"
+            }
+        ]
     },
     {
         "Title": "F1 2019",
+        "Description": "F1® 2019 challenges you to Defeat your Rivals in the most ambitious F1® game in Codemasters’ history. With greater emphasis on graphical fidelity, the environments have been significantly enhanced, and the tracks come to life like never before. Night races have been completely overhauled creating vastly improved levels of realism and the upgraded F1® broadcast sound and visuals add further realism to all aspects of the race weekend.",
         "Type": 5,
         "Year": 2019,
         "Price": 50,
         "Multiplayer": true,
-        "PhotoUrl": "https://britgamer.s3.eu-west-1.amazonaws.com/s3fs-public/styles/cover_art/public/2020-02/f1-2019-cover.jpg?itok=F0aEoELe"
+        "PhotoUrl": "https://britgamer.s3.eu-west-1.amazonaws.com/s3fs-public/styles/cover_art/public/2020-02/f1-2019-cover.jpg?itok=F0aEoELe",
+        "Screenshots": [
+            {
+                "url": "https://www.windowscentral.com/sites/wpcentral.com/files/styles/large/public/field/image/2019/08/f1-2019-front.jpg"
+            },
+            {
+                "url": "https://cdn.vox-cdn.com/thumbor/1ZHHMA6lh09di4FhGqmg-sOQSLA=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/19546110/hubert.jpeg"
+            },
+            {
+                "url": "https://images.hotukdeals.com/thread_groups/content/z9I6k/343234.jpg"
+            }
+        ]
     },
     {
         "Title": "Red Dead Redemption 2",
+        "Description": "America, 1899. The end of the Wild West era has begun. After a robbery goes badly wrong in the western town of Blackwater, Arthur Morgan and the Van der Linde gang are forced to flee. With federal agents and the best bounty hunters in the nation massing on their heels, the gang must rob, steal and fight their way across the rugged heartland of America in order to survive.",
         "Type": 0,
         "Year": 2018,
         "Price": 55,
         "Multiplayer": true,
-        "PhotoUrl": "https://images-na.ssl-images-amazon.com/images/I/71nlEoSrewL._AC_SL1200_.jpg"
+        "PhotoUrl": "https://images-na.ssl-images-amazon.com/images/I/71nlEoSrewL._AC_SL1200_.jpg",
+        "Screenshots": [
+            {
+                "url": "https://cdn.vox-cdn.com/thumbor/5ohaexNMhdQFYMKDf_PCFOfunR8=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/13353957/red_dead_redemption_2_arthur_revolver_3840.jpg"
+            },
+            {
+                "url": "https://cdn.vox-cdn.com/thumbor/wUcockRruwrpspLarJ5BrROziKQ=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/13332567/red_dead_redemption_2_arthur_horseback_landscape_3840.jpg"
+            },
+            {
+                "url": "https://cdn.vox-cdn.com/thumbor/qgs_RoBreZN2nJ9ey38gAlLfTsc=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/13329523/RDR2_Screenshot_215.jpg"
+            }
+        ]
     },
     {
         "Title": "Saints Row The Third Remastered",
+        "Description": "Years after taking Stilwater for their own, the Third Street Saints have evolved from street gang to household brand name, with Saints sneakers, Saints energy drinks and Johnny Gat bobblehead dolls all available at a store near you. The Saints are kings of Stilwater, but their celebrity status has not gone unnoticed. The Syndicate, a legendary criminal fraternity with pawns in play all over the globe, has turned its eye on the Saints and demands tribute.",
         "Type": 0,
         "Year": 2020,
         "Price": 40,
         "Multiplayer": true,
-        "PhotoUrl": "https://www.mobygames.com/images/covers/l/660462-saints-row-the-third-remastered-xbox-one-front-cover.jpg"
+        "PhotoUrl": "https://www.mobygames.com/images/covers/l/660462-saints-row-the-third-remastered-xbox-one-front-cover.jpg",
+        "Screenshots": [
+            {
+                "url": "https://cdn.vox-cdn.com/thumbor/5pxAKl5f38Vy2Z8D0W0CtRXKd20=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/19991530/SRTT_Screenshots_Genki_002.jpg"
+            },
+            {
+                "url": "https://cdn.vox-cdn.com/thumbor/YphgQgRRwui6eyS_8TttZgVqz4c=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/19869927/saintsrow3.jpg"
+            },
+            {
+                "url": "https://i2-prod.dailystar.co.uk/tech/gaming/article22069329.ece/ALTERNATES/s1200c/2_Screenshots_SRTT_Genki_01_B-2.png"
+            }
+        ]
     },
     {
         "Title": "Civilization VI",
+        "Description": "Civilization is a turn-based strategy game in which you attempt to build an empire to stand the test of time. Become Ruler of the World by establishing and leading a civilization from the Stone Age to the Information Age. Wage war, conduct diplomacy, advance your culture, and go head-to-head with history’s greatest leaders as you attempt to build the greatest civilization the world has ever known.",
         "Type": 6,
         "Year": 2016,
         "Price": 20,
         "Multiplayer": false,
-        "PhotoUrl": "https://mms.businesswire.com/media/20181120005072/en/691413/5/2KGMKT_CIV6_GATHERINGSTORM_FOB_ESRB.jpg"
+        "PhotoUrl": "https://mms.businesswire.com/media/20181120005072/en/691413/5/2KGMKT_CIV6_GATHERINGSTORM_FOB_ESRB.jpg",
+        "Screenshots": [
+            {
+                "url": "https://cdn.vox-cdn.com/thumbor/jjJH--UwAAgOFbzmfgy7k46_8HA=/232x0:2764x1688/1400x1400/filters:focal(232x0:2764x1688):format(jpeg)/cdn.vox-cdn.com/uploads/chorus_image/image/49566789/CivilizationVI_screenshot_announce1.0.0.jpg"
+            },
+            {
+                "url": "https://cdn.vox-cdn.com/thumbor/txXMCK_X7DzPNnxmpRiVkInTtiE=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/13746978/ss_436c984ad31cc7e05ade014e47181487ba5f0590.jpg"
+            },
+            {
+                "url": "https://cdn.vox-cdn.com/thumbor/QodFQmEJEB71iLth6efmsX--TAE=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/13236717/civVI_iphone_fullexperience_ss.jpg"
+            }
+        ]
     },
     {
         "Title": "Need For Speed Heat",
+        "Description": "In Need for Speed Heat, the lines of the law fade when the sun starts to set. By daylight, compete in the Speedhunter Showdown, a series of sanctioned events where you can earn Bank to customize your personal fleet of cars. When your ride’s styled just right, ramp up the intensity at night. Take chances, burn competitors to increase your Rep, and risk it all for underground glory.",
         "Type": 2,
         "Year": 2019,
         "Price": 65,
         "Multiplayer": false,
-        "PhotoUrl": "https://s2.gaming-cdn.com/images/products/5362/orig/need-for-speed-heat-cover.jpg"
+        "PhotoUrl": "https://s2.gaming-cdn.com/images/products/5362/orig/need-for-speed-heat-cover.jpg",
+        "Screenshots": [
+            {
+                "url": "https://cdn.vox-cdn.com/thumbor/RFBnYgUQkVaHGGQGiLS3IvqOZuc=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/20024245/NFSH_playfuldomination_03.jpg"
+            },
+            {
+                "url": "https://i2-prod.dailystar.co.uk/incoming/article21622311.ece/ALTERNATES/s1200c/0_nfs-1920x1080-mclaren.jpg"
+            },
+            {
+                "url": "https://cdn.vox-cdn.com/thumbor/p4PGSALAhi-BNa531HDAVxPcm5A=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/19356920/maxresdefault.jpg"
+            }
+        ]
     }
 ]

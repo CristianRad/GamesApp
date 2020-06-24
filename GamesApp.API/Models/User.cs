@@ -11,10 +11,10 @@ namespace GamesApp.API.Models
         public byte[] PasswordSalt { get; set; }
         public string Email { get; set; }
         public int Budget { get; set; }
+        public string PhotoUrl { get; set; }
         public DateTime Created { get; set; }
         public DateTime LastActive { get; set; }
-        public string PhotoUrl { get; set; }
-        public ICollection<PurchasedGame> PurchasedGames { get; set; }
         public ICollection<UserComment> UserComments { get; set; }
+        public ICollection<PurchasedGame> PurchasedGames { get; set; }
     }
 }

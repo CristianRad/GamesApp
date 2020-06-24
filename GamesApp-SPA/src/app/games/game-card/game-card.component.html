@@ -1,0 +1,18 @@
+<div class="card mb-4">
+  <div class="card-img-wrapper">
+    <img class="card-img-top cover" src="{{ game.photoUrl }}" alt="{{ game.title }}">
+    <ul class="list-inline game-icons animate text-center">
+      <li class="list-inline-item">
+        <button class="btn btn-primary" [routerLink]="['/games/', game.id]">
+          <i class="fa fa-gamepad"></i>
+        </button>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body p-1">
+    <h6 class="card-title text-center mb-1"><i class="fa fa-gamepad"></i>
+      {{ game.title }}
+    </h6>
+    <p class="card-text text-muted text-center">{{ game.type }}</p>
+  </div>
+</div>
