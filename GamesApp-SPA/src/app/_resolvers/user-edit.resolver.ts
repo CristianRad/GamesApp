@@ -3,22 +3,24 @@ import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { Game } from '../_models/game';
+import { User } from '../_models/user';
 import { AlertifyService } from '../_services/alertify.service';
-import { GameService } from '../_services/game.service';
+import { AuthService } from '../_services/auth.service';
+import { UserService } from '../_services/user.service';
 
 @Injectable()
-export class GameDetailResolver implements Resolve<Game> {
+export class UserEditResolver implements Resolve<User> {
     constructor(
-        private gameService: GameService,
+        private authService: AuthService,
+        private userService: UserService,
         private router: Router,
         private alertify: AlertifyService
     ) { }
 
-    resolve(route: ActivatedRouteSnapshot): Observable<Game> {
-        return this.gameService.getGame(route.params['id']).pipe(
+    resolve(route: ActivatedRouteSnapshot): Observable<User> {
+        return this.userService.getUser(this.authService.decodedToken.nameid).pipe(
             catchError(error => {
-                this.alertify.error('Problem retrieving data');
+                this.alertify.error('Problem retrieving your personal data');
                 this.router.navigate(['/games']);
                 return of(null);
             })

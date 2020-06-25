@@ -37,6 +37,7 @@ namespace GamesApp.API
             services.AddAutoMapper(typeof(GamesRepository).Assembly);
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IGamesRepository, GamesRepository>();
+            services.AddScoped<IUsersRepository, UsersRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => {
                     options.TokenValidationParameters = new TokenValidationParameters

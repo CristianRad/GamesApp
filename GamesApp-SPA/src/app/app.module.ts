@@ -13,19 +13,24 @@ import { AppComponent } from './app.component';
 import { CommentsComponent } from './comments/comments.component';
 import { GameCardComponent } from './games/game-card/game-card.component';
 import { GameDetailComponent } from './games/game-detail/game-detail.component';
+import { GameEditComponent } from './games/game-edit/game-edit.component';
 import { GameListComponent } from './games/game-list/game-list.component';
 import { HomeComponent } from './home/home.component';
 import { ListsComponent } from './lists/lists.component';
 import { NavComponent } from './nav/nav.component';
 import { RegisterComponent } from './register/register.component';
+import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { AlertifyService } from './_services/alertify.service';
 import { AuthService } from './_services/auth.service';
 import { GameService } from './_services/game.service';
+import { UserService } from './_services/user.service';
 import { appRoutes } from './routes';
 import { AuthGuard } from './_guards/auth.guard';
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { GameDetailResolver } from './_resolvers/game-detail.resolver';
 import { GameListResolver } from './_resolvers/game-list.resolver';
+import { UserEditResolver } from './_resolvers/user-edit.resolver';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -34,14 +39,16 @@ export function tokenGetter() {
 @NgModule({
    declarations: [
       AppComponent,
-      NavComponent,
-      HomeComponent,
-      RegisterComponent,
+      CommentsComponent,
       GameCardComponent,
       GameDetailComponent,
+      GameEditComponent,
       GameListComponent,
+      HomeComponent,
       ListsComponent,
-      CommentsComponent
+      NavComponent,
+      RegisterComponent,
+      UserEditComponent
    ],
    imports: [
       BrowserModule,
@@ -67,7 +74,10 @@ export function tokenGetter() {
       ErrorInterceptorProvider,
       GameDetailResolver,
       GameListResolver,
-      GameService
+      GameService,
+      PreventUnsavedChanges,
+      UserEditResolver,
+      UserService
    ],
    bootstrap: [
       AppComponent

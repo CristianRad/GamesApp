@@ -11,6 +11,8 @@ namespace GamesApp.API.Helpers
             CreateMap<Game, GameDto>();
             CreateMap<Game, GameDetailDto>();
             CreateMap<Screenshot, ScreenshotDto>();
+            CreateMap<User, UserDto>();
+            CreateMap<UserForUpdateDto, User>();
         }
     }
 }
