@@ -23,6 +23,13 @@ namespace GamesApp.API.Data
             _context.Remove(entity);
         }
 
+        public async Task<Screenshot> GetScreenshot(int id)
+        {
+            var screenshot = await _context.Screenshots.FirstOrDefaultAsync(s => s.Id == id);
+
+            return screenshot;
+        }
+
         public async Task<Game> GetGame(int id)
         {
             var game = await _context.Games

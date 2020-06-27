@@ -1,14 +1,12 @@
 using System;
 
-namespace GamesApp.API.Models
+namespace GamesApp.API.Dtos
 {
-    public class Screenshot
+    public class ScreenshotForReturnDto
     {
         public int Id { get; set; }
         public string Url { get; set; }
         public DateTime DateAdded { get; set; }
         public string PublicId { get; set; }
-        public int GameId { get; set; }
-        public Game Game { get; set; }
     }
 }

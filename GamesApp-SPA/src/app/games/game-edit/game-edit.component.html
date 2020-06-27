@@ -1,3 +1,81 @@
-<p>
-  game-edit works!
-</p>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-sm-4">
+      <h1>Game Info</h1>
+    </div>
+    <div class="col-sm-8">
+      <div *ngIf="editGameForm.dirty" class="alert alert-info">
+        <strong>Information:</strong> You have made changes. Any unsaved changes will be lost!
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card">
+        <img class="card-img-top img-thumbnail" src="{{ game.photoUrl }}" alt="{{ game.title }}">
+        <div class="card-body">
+          <div>
+            <strong>Type:</strong>
+            <p>{{ game.type }}</p>
+          </div>
+          <div>
+            <strong>Year:</strong>
+            <p>{{ game.year }}</p>
+          </div>
+          <div>
+            <strong>Price:</strong>
+            <p>{{ game.price }}€</p>
+          </div>
+          <div>
+            <strong>Multiplayer:</strong>
+            <p>{{ game.multiplayer }}</p>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="text-center">
+            <button [disabled]="!editGameForm.dirty" form="editGameForm" class="btn btn-success btn-block">Save Changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div class="tab-panel">
+        <tabset class="game-tabset">
+          <tab heading="Edit Game">
+            <form #editGameForm="ngForm" id="editGameForm" (ngSubmit)="updateGame()">
+              <h4>Title</h4>
+              <input type="text" name="title" class="form-control" [(ngModel)]="game.title">
+              <h4>Description</h4>
+              <textarea name="description" rows="6" class="form-control" [(ngModel)]="game.description"></textarea>
+              <h4>Year</h4>
+              <input type="number" name="year" class="form-control" [(ngModel)]="game.year">
+              <h4>Type</h4>
+              <select name="type" class="form-control" [(ngModel)]="game.type">
+                <option value="Action">Action</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Racing">Racing</option>
+                <option value="RPG">RPG</option>
+                <option value="Simulation">Simulation</option>
+                <option value="Sports">Sports</option>
+              </select>
+              <h4>Price</h4>
+              <input type="number" name="price" class="form-control" [(ngModel)]="game.price">
+              <h4>Multiplayer</h4>
+              <label class="radio-inline">
+                <input type="radio" name="multiplayer" class="mr-3" value="true" [(ngModel)]="game.multiplayer">Yes
+              </label>
+              <label class="radio-inline ml-3">
+                <input type="radio" name="multiplayer" class="mr-3" value="false" [(ngModel)]="game.multiplayer">No
+              </label>
+              <h4>Cover Photo</h4>
+              <input type="text" name="photoUrl" class="form-control" [(ngModel)]="game.photoUrl">
+            </form>
+          </tab>
+          <tab heading="Edit Screenshots">
+            <app-screenshot-editor [screenshots]="game.screenshots" [gameId]="game.id"></app-screenshot-editor>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>
