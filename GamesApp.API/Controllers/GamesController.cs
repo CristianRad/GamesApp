@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using GamesApp.API.Data;
 using GamesApp.API.Dtos;
+using GamesApp.API.Helpers;
 using GamesApp.API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -25,11 +26,13 @@ namespace GamesApp.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetGames()
+        public async Task<IActionResult> GetGames([FromQuery]GameParams gameParams)
         {
-            var games = await _repo.GetGames();
+            var games = await _repo.GetGames(gameParams);
 
             var gamesToReturn = _mapper.Map<IEnumerable<GameDto>>(games);
+
+            Response.AddPagination(games.CurrentPage, games.PageSize, games.TotalCount, games.TotalPages);
 
             return Ok(gamesToReturn);
         }

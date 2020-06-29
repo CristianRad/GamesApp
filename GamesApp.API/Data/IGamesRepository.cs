@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
+using GamesApp.API.Helpers;
 using GamesApp.API.Models;
 
 namespace GamesApp.API.Data
@@ -9,7 +9,7 @@ namespace GamesApp.API.Data
          void Add<T>(T entity) where T: class;
          void Delete<T>(T entity) where T: class;
          Task<bool> SaveAll();
-         Task<IEnumerable<Game>> GetGames();
+         Task<PagedList<Game>> GetGames(GameParams gameParams);
          Task<Game> GetGame(int id);
          Task<Screenshot> GetScreenshot(int id);
     }

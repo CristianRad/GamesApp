@@ -9,6 +9,9 @@ import { GameService } from '../_services/game.service';
 
 @Injectable()
 export class GameListResolver implements Resolve<Game[]> {
+    pageNumber = 1;
+    pageSize = 12;
+
     constructor(
         private gameService: GameService,
         private router: Router,
@@ -16,7 +19,7 @@ export class GameListResolver implements Resolve<Game[]> {
     ) { }
 
     resolve(route: ActivatedRouteSnapshot): Observable<Game[]> {
-        return this.gameService.getGames().pipe(
+        return this.gameService.getGames(this.pageNumber, this.pageSize).pipe(
             catchError(error => {
                 this.alertify.error('Problem retrieving data');
                 this.router.navigate(['/home']);

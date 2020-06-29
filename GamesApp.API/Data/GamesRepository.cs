@@ -1,5 +1,7 @@
-using System.Collections.Generic;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
+using GamesApp.API.Helpers;
 using GamesApp.API.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -39,11 +41,33 @@ namespace GamesApp.API.Data
             return game;
         }
 
-        public async Task<IEnumerable<Game>> GetGames()
+        public async Task<PagedList<Game>> GetGames(GameParams gameParams)
         {
-            var games = await _context.Games.ToListAsync();
+            var games = _context.Games.Include(g => g.Screenshots).OrderByDescending(g => g.Year).AsQueryable();
 
-            return games;
+            if (gameParams.MinPrice != 0 || gameParams.MaxPrice != 100)
+                games = games.Where(g => g.Price >= gameParams.MinPrice && g.Price <= gameParams.MaxPrice);
+
+            if (gameParams.Type != null)
+                games = games.Where(g => g.Type == gameParams.Type);
+
+            if (gameParams.Multiplayer != null)
+                games = games.Where(g => g.Multiplayer == gameParams.Multiplayer);
+
+            if (!string.IsNullOrEmpty(gameParams.OrderBy))
+            {
+                switch (gameParams.OrderBy)
+                {
+                    case "price":
+                        games = games.OrderByDescending(g => g.Price);
+                        break;
+                    default:
+                        games = games.OrderByDescending(g => g.Year);
+                        break;
+                }
+            }
+
+            return await PagedList<Game>.CreateAsync(games, gameParams.PageNumber, gameParams.PageSize);
         }
 
         public async Task<bool> SaveAll()
