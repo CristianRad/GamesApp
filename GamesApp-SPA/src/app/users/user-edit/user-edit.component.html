@@ -20,15 +20,15 @@
           </div>
           <div>
             <strong>Budget:</strong>
-            <p>{{ user.budget }}</p>
+            <p>€{{ user.budget }}</p>
           </div>
           <div>
             <strong>Last Active:</strong>
-            <p>{{ user.lastActive | date: 'dd/MM/yyyy h:mm:ss a' }}</p>
+            <p>{{ user.lastActive | timeago }}</p>
           </div>
           <div>
             <strong>Registration Date:</strong>
-            <p>{{ user.created | date: 'dd/MM/yyyy h:mm:ss a' }}</p>
+            <p>{{ user.created | date: 'mediumDate' }}</p>
           </div>
         </div>
         <div class="card-footer">

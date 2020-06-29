@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using AutoMapper;
 using GamesApp.API.Data;
 using GamesApp.API.Dtos;
+using GamesApp.API.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GamesApp.API.Controllers
 {
+    [ServiceFilter(typeof(LogUserActivity))]
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
