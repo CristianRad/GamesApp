@@ -1,0 +1,13 @@
+<form [formGroup]="updateCommentForm" (ngSubmit)="updateComment()">
+
+  <div class="form-group">
+    <label for="addCommnet">Update comment...</label>
+    <textarea class="form-control" id="updateComment" rows="3" formControlName="commentText" autofocus required></textarea>
+  </div>
+
+  <div class="form-group">
+    <button class="btn btn-outline-primary btn-sm mr-2" type="submit" [disabled]="!updateCommentForm.valid">Save</button>
+    <button class="btn btn-outline-danger btn-sm" type="button" (click)="cancel()">Cancel</button>
+  </div>
+
+</form>

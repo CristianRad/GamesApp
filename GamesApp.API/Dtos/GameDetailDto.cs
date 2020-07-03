@@ -13,6 +13,7 @@ namespace GamesApp.API.Dtos
         public int Price { get; set; }
         public bool Multiplayer { get; set; }
         public string PhotoUrl { get; set; }
-        public ICollection<ScreenshotDto> Screenshots { get; set; }
+        public List<ScreenshotDto> Screenshots { get; set; }
+        public List<CommentDto> UserComments { get; set; } = new List<CommentDto>();
     }
 }

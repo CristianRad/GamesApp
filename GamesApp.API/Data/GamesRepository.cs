@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using GamesApp.API.Dtos;
 using GamesApp.API.Helpers;
 using GamesApp.API.Models;
 using Microsoft.EntityFrameworkCore;
@@ -36,6 +37,8 @@ namespace GamesApp.API.Data
         {
             var game = await _context.Games
                 .Include(g => g.Screenshots)
+                .Include(g => g.UserComments).ThenInclude(uc => uc.Comment)
+                .Include(g => g.UserComments).ThenInclude(uc => uc.User)
                 .FirstOrDefaultAsync(g => g.Id == id);
 
             return game;

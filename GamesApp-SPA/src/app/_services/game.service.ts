@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { Comment } from '../_models/comment';
 import { Game } from '../_models/game';
 import { PaginatedResult } from '../_models/pagination';
 import { environment } from 'src/environments/environment';
@@ -48,6 +49,10 @@ export class GameService {
 
   updateGame(id: number, game: Game) {
     return this.http.put(this.baseUrl + 'games/' + id, game);
+  }
+
+  addComment(gameId: number, comment: Comment) {
+    return this.http.post(this.baseUrl + 'games/' + gameId + '/comments', comment);
   }
 
   deleteScreenshot(gameId: number, id: number) {

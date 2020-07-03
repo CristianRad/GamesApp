@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -9,6 +10,7 @@ using GamesApp.API.Helpers;
 using GamesApp.API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace GamesApp.API.Controllers
 {
@@ -17,16 +19,19 @@ namespace GamesApp.API.Controllers
     [ApiController]
     public class GamesController : ControllerBase
     {
-        private readonly IGamesRepository _repo;
+        private readonly DataContext _context;
         private readonly IMapper _mapper;
-        public GamesController(IGamesRepository repo, IMapper mapper)
+        private readonly IGamesRepository _repo;
+        
+        public GamesController(IGamesRepository repo, IMapper mapper, DataContext context)
         {
+            _context = context;
             _mapper = mapper;
             _repo = repo;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetGames([FromQuery]GameParams gameParams)
+        public async Task<IActionResult> GetGames([FromQuery] GameParams gameParams)
         {
             var games = await _repo.GetGames(gameParams);
 
@@ -58,6 +63,45 @@ namespace GamesApp.API.Controllers
                 return NoContent();
 
             throw new Exception($"Updating game {id} failed on save");
+        }
+
+        [HttpPost("{gameId}/comments")]
+        public async Task<ActionResult<Comment>> AddComment(int gameId, CommentForCreationDto commentForCreationDto)
+        {
+            int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+            if (!GameExists(gameId))
+            {
+                return BadRequest("Game does not exist");
+            }
+
+            var comment = _mapper.Map<Comment>(commentForCreationDto);
+
+            comment.AddedOn = DateTime.Now;
+            comment.IsApproved = false;
+
+            _context.Comments.Add(comment);
+            await _context.SaveChangesAsync();
+
+            var newComment = await _context.Comments.IgnoreQueryFilters().FirstOrDefaultAsync(c => c.Id == comment.Id);
+
+            var userComment = new UserComment { UserId = userId, CommentId = comment.Id, GameId = gameId };
+            
+            _context.UserComments.Add(userComment);
+            await _context.SaveChangesAsync();
+
+            var updatedGame = await _context.Games.FindAsync(gameId);
+            updatedGame.UserComments.Add(userComment);
+
+            var updatedUser = await _context.Users.FindAsync(userId);
+            updatedUser.UserComments.Add(userComment);
+
+            return Ok();
+        }
+
+        private bool GameExists(long id)
+        {
+            return _context.Games.Any(g => g.Id == id);
         }
     }
 }

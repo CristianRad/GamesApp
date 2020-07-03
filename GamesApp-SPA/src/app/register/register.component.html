@@ -53,16 +53,20 @@
 
   <div class="form-group">
     <input 
-      type="number" 
+      type="number"
       [ngClass]="{'is-invalid': registerForm.get('budget').errors && registerForm.get('budget').touched}" 
       class="form-control"
       formControlName="budget" 
       placeholder="Budget">
     <div 
       class="invalid-feedback"
-      *ngIf="(registerForm.get('budget').invalid && registerForm.get('email').touched) || registerForm.get('email').dirty">
-      <div *ngIf="registerForm.get('budget').errors.required">Budget is required</div>
-      <div *ngIf="registerForm.get('budget').errors.min">Please provide a valid amount</div>
+      *ngIf="registerForm.get('budget').hasError('required') && registerForm.get('budget').touched">
+      Budget is required
+    </div>
+    <div 
+      class="invalid-feedback"
+      *ngIf="registerForm.get('budget').hasError('min') && registerForm.get('budget').touched">
+      Please provide a valid amount
     </div>
   </div>
 
@@ -75,9 +79,13 @@
       placeholder="Photo Url">
     <div 
       class="invalid-feedback"
-      *ngIf="(registerForm.get('photoUrl').invalid && registerForm.get('photoUrl').touched) || registerForm.get('photoUrl').dirty">
-      <div *ngIf="registerForm.get('photoUrl').errors.required">A photo url is required</div>
-      <div *ngIf="registerForm.get('photoUrl').errors.pattern">Please provide a valid photo url</div>
+      *ngIf="registerForm.get('photoUrl').hasError('required') && registerForm.get('photoUrl').touched">
+      A photo url is required
+    </div>
+    <div 
+      class="invalid-feedback"
+      *ngIf="registerForm.get('photoUrl').hasError('pattern') && registerForm.get('photoUrl').touched">
+      Please provide a valid photo url
     </div>
   </div>
 
@@ -85,5 +93,4 @@
     <button class="btn btn-success" [disabled]="!registerForm.valid" type="submit">Register</button>
     <button class="btn btn-default" type="button" (click)="cancel()">Cancel</button>
   </div>
-  
 </form>

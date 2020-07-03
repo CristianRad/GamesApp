@@ -12,8 +12,8 @@ namespace GamesApp.API.Models
         public int Price { get; set; }
         public bool Multiplayer { get; set; }
         public string PhotoUrl { get; set; }
-        public ICollection<Screenshot> Screenshots { get; set; }
-        public ICollection<UserComment> UserComments { get; set; }
+        public List<Screenshot> Screenshots { get; set; }
+        public List<UserComment> UserComments { get; set; }
         public ICollection<PurchasedGame> GamePurchasedByUsers { get; set; }
     }
 }

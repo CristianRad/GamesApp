@@ -14,6 +14,8 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { TimeagoModule } from 'ngx-timeago';
 
 import { AppComponent } from './app.component';
+import { CommentAddComponent } from './comments/comment-add/comment-add.component';
+import { CommentUpdateComponent } from './comments/comment-update/comment-update.component';
 import { CommentsComponent } from './comments/comments.component';
 import { GameCardComponent } from './games/game-card/game-card.component';
 import { GameDetailComponent } from './games/game-detail/game-detail.component';
@@ -27,12 +29,14 @@ import { ScreenshotEditorComponent } from './games/screenshot-editor/screenshot-
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { AlertifyService } from './_services/alertify.service';
 import { AuthService } from './_services/auth.service';
+import { CommentService } from './_services/comment.service';
+import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { GameService } from './_services/game.service';
 import { UserService } from './_services/user.service';
 import { appRoutes } from './routes';
 import { AuthGuard } from './_guards/auth.guard';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
-import { ErrorInterceptorProvider } from './_services/error.interceptor';
+import { YesNoPipe } from './_pipes/yes-no.pipe';
 import { GameDetailResolver } from './_resolvers/game-detail.resolver';
 import { GameListResolver } from './_resolvers/game-list.resolver';
 import { UserEditResolver } from './_resolvers/user-edit.resolver';
@@ -44,6 +48,8 @@ export function tokenGetter() {
 @NgModule({
    declarations: [
       AppComponent,
+      CommentAddComponent,
+      CommentUpdateComponent,
       CommentsComponent,
       GameCardComponent,
       GameDetailComponent,
@@ -54,7 +60,8 @@ export function tokenGetter() {
       NavComponent,
       RegisterComponent,
       ScreenshotEditorComponent,
-      UserEditComponent
+      UserEditComponent,
+      YesNoPipe
    ],
    imports: [
       BrowserModule,
@@ -82,6 +89,7 @@ export function tokenGetter() {
       AlertifyService,
       AuthGuard,
       AuthService,
+      CommentService,
       ErrorInterceptorProvider,
       GameDetailResolver,
       GameListResolver,

@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)]],
       password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]],
-      budget: ['', [Validators.required, Validators.min(0)]],
+      budget: [null, Validators.compose([Validators.required, Validators.min(0)])],
       photoUrl: ['', [Validators.required, Validators.pattern(/(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/)]]
     });
     this.registerForm.updateValueAndValidity();

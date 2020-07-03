@@ -14,7 +14,7 @@ namespace GamesApp.API.Models
         public string PhotoUrl { get; set; }
         public DateTime Created { get; set; }
         public DateTime LastActive { get; set; }
-        public ICollection<UserComment> UserComments { get; set; }
+        public List<UserComment> UserComments { get; set; }
         public ICollection<PurchasedGame> PurchasedGames { get; set; }
     }
 }

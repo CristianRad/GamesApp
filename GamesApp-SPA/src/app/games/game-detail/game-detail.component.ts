@@ -2,9 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from '@kolkov/ngx-gallery';
 
+import { Comment } from 'src/app/_models/comment';
 import { Game } from 'src/app/_models/game';
-import { GameService } from 'src/app/_services/game.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
+import { AuthService } from 'src/app/_services/auth.service';
+import { CommentService } from 'src/app/_services/comment.service';
+import { GameService } from 'src/app/_services/game.service';
 
 @Component({
   selector: 'app-game-detail',
@@ -13,12 +16,19 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 })
 export class GameDetailComponent implements OnInit {
   game: Game;
+  currentComment: Comment;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
+  loggedUser: string;
+  isUserLoggedIn = false;
+  addCommentMode = false;
+  updateCommentMode = false;
 
   constructor(
+    private commentService: CommentService,
     private gameService: GameService,
     private alertify: AlertifyService,
+    private authService: AuthService,
     private route: ActivatedRoute
   ) { }
 
@@ -38,6 +48,11 @@ export class GameDetailComponent implements OnInit {
       }
     ];
     this.galleryImages = this.getImages();
+
+    this.isUserLoggedIn = this.authService.loggedIn();
+    if (this.isUserLoggedIn) {
+      this.loggedUser = this.authService.decodedToken.unique_name;
+    }
   }
 
   getImages() {
@@ -50,5 +65,45 @@ export class GameDetailComponent implements OnInit {
       });
     }
     return imageUrls;
+  }
+
+  toggleAddCommentForm() {
+    this.updateCommentMode = false;
+    this.addCommentMode = !this.addCommentMode;
+  }
+
+  closeAddForm() {
+    this.addCommentMode = false;
+  }
+
+  toggleUpdateCommentForm(comment: Comment) {
+    this.currentComment = comment;
+    this.addCommentMode = false;
+    this.updateCommentMode = !this.updateCommentMode;
+  }
+
+  closeUpdateForm() {
+    this.updateCommentMode = false;
+  }
+
+  deleteComment(commentId: number) {
+    this.updateCommentMode = false;
+    this.alertify.confirm('Are you sure you want to delete this comment?', () => {
+      this.commentService.deleteComment(commentId).subscribe(() => {
+        this.alertify.success('Comment successfully deleted');
+        this.getGameDetails();
+      }, error => {
+        this.alertify.error(error);
+      });
+    });
+  }
+
+  reloadData() {
+    this.updateCommentMode = false;
+    this.getGameDetails();
+  }
+
+  getGameDetails() {
+    this.gameService.getGame(this.game.id).subscribe(game => this.game = game);
   }
 }
