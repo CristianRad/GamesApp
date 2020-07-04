@@ -7,7 +7,7 @@
           <i class="fa fa-gamepad"></i>
         </button>
       </li>
-      <li class="list-inline-item">
+      <li *appHasRole="['Admin']" class="list-inline-item">
         <button class="btn btn-primary" [routerLink]="['/games/', game.id, 'edit']">
           <i class="fa fa-pencil-square-o"></i>
         </button>

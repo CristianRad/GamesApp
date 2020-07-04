@@ -1,0 +1,57 @@
+<div>
+  <div *ngIf="comments?.length === 0" class="row no-comments">
+    <div class="container">
+      <div class="jumbotron">
+        <h1 class="display-4 text-center">No comments are waiting for approval</h1>
+        <hr class="my-4">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div *ngIf="comments?.length > 0" class="header mt-4">
+    <h1 class="p-4">Comments waiting for approval</h1>
+  </div>
+
+  <div *ngIf="comments?.length > 0" class="container p-0">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 my-5" style="width: 100%;">
+
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef style="width: 10%;"> Username </th>
+        <td mat-cell *matCellDef="let comment" class="pr-2"> {{comment.username}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="game">
+        <th mat-header-cell *matHeaderCellDef style="width: 20%;"> Game </th>
+        <td mat-cell *matCellDef="let comment" class="pr-2"> {{comment.game}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="commentText">
+        <th mat-header-cell *matHeaderCellDef style="width: 40%;"> Comment </th>
+        <td mat-cell *matCellDef="let comment" class="pr-2"> {{comment.commentText}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="addedOn">
+        <th mat-header-cell *matHeaderCellDef style="width: 10%;"> Added On </th>
+        <td mat-cell *matCellDef="let comment" class="pr-2"> {{comment.addedOn | timeago}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="operations">
+        <th mat-header-cell *matHeaderCellDef style="width: 10%;"></th>
+        <td mat-cell *matCellDef="let comment" class="">
+          <a matTooltip="Approve Comment" class="text-success ml-3"
+            (click)="approveComment(comment.id)">
+            <mat-icon>done</mat-icon>
+          </a>
+          <a matTooltip="Reject Comment" class="text-danger ml-3" (click)="rejectComment(comment.id)">
+            <mat-icon>delete</mat-icon>
+          </a>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>

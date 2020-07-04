@@ -1,0 +1,120 @@
+<div class="col-md-4 mt-4">
+<form [formGroup]="addGameForm" (ngSubmit)="addGame()">
+  <h2 class="text-center text-primary">Game Details</h2>
+  <hr>
+
+  <div class="form-group">
+    <label class="font-weight-bold">Title</label>
+    <input 
+      type="text" 
+      [ngClass]="{'is-invalid': addGameForm.get('title').errors && addGameForm.get('title').touched}" 
+      class="form-control" 
+      formControlName="title">
+    <div class="invalid-feedback">Enter the game title</div>
+  </div>
+
+  <div class="form-group">
+    <label class="font-weight-bold">Description</label>
+    <textarea  
+      [ngClass]="{'is-invalid': addGameForm.get('description').errors && addGameForm.get('description').touched}" 
+      class="form-control" 
+      formControlName="description">
+    </textarea>
+    <div class="invalid-feedback">Provide a short description of the game</div>
+  </div>
+
+  <div class="form-group">
+    <label class="font-weight-bold">Type</label>
+    <select 
+      [ngClass]="{'is-invalid': addGameForm.get('type').errors && addGameForm.get('type').touched}" 
+      class="form-control" 
+      formControlName="type">
+      <option value="Action">Action</option>
+      <option value="Adventure">Adventure</option>
+      <option value="Racing">Racing</option>
+      <option value="RPG">RPG</option>
+      <option value="Simulation">Simulation</option>
+      <option value="Sports">Sports</option>
+    </select>
+    <div class="invalid-feedback">Choose a game type</div>
+  </div>
+
+  <div class="form-group">
+    <label class="font-weight-bold">Year</label>
+    <input 
+      type="number" 
+      [ngClass]="{'is-invalid': addGameForm.get('year').errors && addGameForm.get('year').touched}" 
+      class="form-control" 
+      formControlName="year">
+    <div 
+      class="invalid-feedback"
+      *ngIf="addGameForm.get('year').hasError('required') && addGameForm.get('year').touched">
+      Year of release is required
+    </div>
+    <div 
+      class="invalid-feedback"
+      *ngIf="addGameForm.get('year').hasError('min') && addGameForm.get('year').touched">
+      Enter a year equal to or greater than 1995
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="font-weight-bold">Price</label>
+    <input 
+      type="number" 
+      [ngClass]="{'is-invalid': addGameForm.get('price').errors && addGameForm.get('price').touched}" 
+      class="form-control" 
+      formControlName="price">
+    <div 
+      class="invalid-feedback"
+      *ngIf="addGameForm.get('price').hasError('required') && addGameForm.get('price').touched">
+      Price is required
+    </div>
+    <div 
+      class="invalid-feedback"
+      *ngIf="addGameForm.get('price').hasError('min') && addGameForm.get('price').touched">
+      Provide a price equal to or greater than 0
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="font-weight-bold">Multiplayer</label>
+    <div>
+      <input 
+        type="radio"
+        class="radio-button mr-1"
+        formControlName="multiplayer"
+        [value]="true">Yes
+      <input 
+        type="radio"
+        class="radio-button ml-3 mr-1"
+        formControlName="multiplayer"  
+        [value]="false">No
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="font-weight-bold">Cover Photo Url</label>
+    <input 
+      type="text" 
+      [ngClass]="{'is-invalid': addGameForm.get('photoUrl').errors && addGameForm.get('photoUrl').touched}" 
+      class="form-control" 
+      formControlName="photoUrl">
+    <div 
+      class="invalid-feedback"
+      *ngIf="addGameForm.get('photoUrl').hasError('required') && addGameForm.get('photoUrl').touched">
+      Photo url is required
+    </div>
+    <div 
+      class="invalid-feedback"
+      *ngIf="addGameForm.get('photoUrl').hasError('pattern') && addGameForm.get('photoUrl').touched">
+      Insert a valid photo url
+    </div>
+  </div>
+
+  <div class="form-group text-center">
+    <button class="btn btn-success" [disabled]="!addGameForm.valid" type="submit">Add</button>
+    <button class="btn btn-default" type="button" (click)="cancel()">Cancel</button>
+  </div>
+</form>
+</div>

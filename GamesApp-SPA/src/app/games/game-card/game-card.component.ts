@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+
 import { Game } from 'src/app/_models/game';
 
 @Component({
@@ -13,5 +14,4 @@ export class GameCardComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

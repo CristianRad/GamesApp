@@ -47,8 +47,16 @@ export class GameService {
     return this.http.get<Game>(this.baseUrl + 'games/' + id);
   }
 
+  addGame(game: Game) {
+    return this.http.post(this.baseUrl + 'games', game);
+  }
+
   updateGame(id: number, game: Game) {
     return this.http.put(this.baseUrl + 'games/' + id, game);
+  }
+
+  deleteGame(id: number) {
+    return this.http.delete(this.baseUrl + 'games/' + id);
   }
 
   addComment(gameId: number, comment: Comment) {

@@ -31,13 +31,14 @@
     </div>
     <div class="col-sm-8">
       <div class="tab-panel">
-        <tabset class="game-tabset">
+        <tabset #staticTabs class="game-tabset">
           <tab heading="About {{ game.title }}">
             <h4 class="mt-4">Description</h4>
             <p>{{ game.description }}</p>
           </tab>
           <tab heading="Screenshots">
             <h4 class="mt-4">In-Game Captures</h4>
+            <p *ngIf="game.screenshots.length == 0">There are no available screenshots for this game yet.</p>
             <ngx-gallery style="display: inline-block; margin-bottom: 20px;" [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
           </tab>
           <tab heading="Comments">
@@ -49,7 +50,7 @@
                   <th style="width: 10%;">Username</th>
                   <th style="width: 40%;">Text</th>
                   <th style="width: 20%;">Added On</th>
-                  <th style="width: 30%;">Operations</th>
+                  <th style="width: 30%;"></th>
                 </tr>
               </thead>
               <tbody>
@@ -58,10 +59,10 @@
                   <td>{{ comment.commentText }}</td>
                   <td>{{ comment.addedOn | timeago }}</td>
                   <td>
-                    <a *ngIf="comment.username === loggedUser" class="btn btn-outline-primary btn-sm mr-3" 
-                      (click)="toggleUpdateCommentForm(comment)">Update</a>
-                    <a *ngIf="comment.username === loggedUser" class="btn btn-outline-danger btn-sm"
-                      (click)="deleteComment(comment.commentId)" (onSubmit)="reloadData()">Delete</a>
+                    <button *ngIf="comment.username === loggedUser" class="btn btn-outline-warning btn-sm mr-2" 
+                      (click)="toggleUpdateCommentForm(comment)">Update</button>
+                    <button *ngIf="comment.username === loggedUser" class="btn btn-outline-danger btn-sm"
+                      (click)="deleteComment(comment.commentId)" (onSubmit)="reloadData()">Delete</button>
                   </td>
                 </tr>
               </tbody>
@@ -69,7 +70,7 @@
             <div *ngIf="addCommentMode" class="mt-4">
               <app-comment-add [currentGame]="game" (submitComment)="closeAddForm()" (cancelComment)="closeAddForm()"></app-comment-add>
             </div>
-            <div *ngIf="updateCommentMode">
+            <div *ngIf="updateCommentMode" class="mt-4">
               <app-comment-update [currentGame]="game" [comment]="currentComment" 
                 (submitComment)="reloadData()" (cancelComment)="closeUpdateForm()">
               </app-comment-update>

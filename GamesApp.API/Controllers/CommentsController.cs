@@ -26,12 +26,20 @@ namespace GamesApp.API.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Return a list of comments to be approved.
+        /// </summary>
+        /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> GetUnapprovedComments()
         {
             var userComments = await _context.UserComments
-                .Include(uc => uc.Comment).Include(uc => uc.User).Include(uc => uc.Game)
-                .IgnoreQueryFilters().Where(uc => uc.Comment.IsApproved == false)
+                .Include(uc => uc.Comment)
+                .Include(uc => uc.User)
+                .Include(uc => uc.Game)
+                .IgnoreQueryFilters()
+                .Where(uc => uc.Comment.IsApproved == false)
                 .OrderByDescending(uc => uc.Comment.AddedOn)
                 .ToListAsync();
 
@@ -40,10 +48,18 @@ namespace GamesApp.API.Controllers
             return Ok(comments);
         }
 
+        /// <summary>
+        /// Approve a comment.
+        /// </summary>
+        /// <param name="id">The Id of the comment to be approved</param>
+        /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         [HttpPost("approve/{id}")]
         public async Task<IActionResult> ApproveComment(long id)
         {
-            var comment = await _context.Comments.IgnoreQueryFilters().FirstOrDefaultAsync(c => c.Id == id && c.IsApproved == false);
+            var comment = await _context.Comments
+                .IgnoreQueryFilters()
+                .FirstOrDefaultAsync(c => c.Id == id && c.IsApproved == false);
 
             if (comment == null)
             {
@@ -56,10 +72,18 @@ namespace GamesApp.API.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Reject a comment.
+        /// </summary>
+        /// <param name="id">The Id of the comment to be rejected</param>
+        /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         [HttpPost("reject/{id}")]
         public async Task<IActionResult> RejectComment(long id)
         {
-            var comment = await _context.Comments.IgnoreQueryFilters().FirstOrDefaultAsync(c => c.Id == id && c.IsApproved == false);
+            var comment = await _context.Comments
+                .IgnoreQueryFilters()
+                .FirstOrDefaultAsync(c => c.Id == id && c.IsApproved == false);
 
             if (comment == null)
             {
@@ -78,6 +102,12 @@ namespace GamesApp.API.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Update a comment.
+        /// </summary>
+        /// <param name="commentId">The Id of the comment to update</param>
+        /// <param name="commentForUpdateDto">The updated comment</param>
+        /// <returns></returns>
         [HttpPut("{commentId}")]
         public async Task<ActionResult<Comment>> EditComment(long commentId, CommentForUpdateDto commentForUpdateDto)
         {
@@ -85,7 +115,7 @@ namespace GamesApp.API.Controllers
             
             if(userComment == null)
             {
-                return BadRequest("No user associated with this comment was found");
+                return BadRequest("No comment with the given Id was found");
             }
             
             if (userComment.UserId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
@@ -112,6 +142,11 @@ namespace GamesApp.API.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Remove a comment.
+        /// </summary>
+        /// <param name="commentId">The Id of the comment to remove</param>
+        /// <returns></returns>
         [HttpDelete("{commentId}")]
         public async Task<ActionResult<Comment>> DeleteComment(long commentId)
         {

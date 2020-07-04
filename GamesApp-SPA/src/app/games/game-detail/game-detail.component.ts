@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from '@kolkov/ngx-gallery';
+import { TabsetComponent } from 'ngx-bootstrap/tabs';
 
 import { Comment } from 'src/app/_models/comment';
 import { Game } from 'src/app/_models/game';
@@ -15,6 +16,7 @@ import { GameService } from 'src/app/_services/game.service';
   styleUrls: ['./game-detail.component.css']
 })
 export class GameDetailComponent implements OnInit {
+  @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
   game: Game;
   currentComment: Comment;
   galleryOptions: NgxGalleryOptions[];
@@ -70,6 +72,11 @@ export class GameDetailComponent implements OnInit {
   toggleAddCommentForm() {
     this.updateCommentMode = false;
     this.addCommentMode = !this.addCommentMode;
+    this.selectTab();
+  }
+
+  selectTab() {
+    this.staticTabs.tabs[2].active = true;
   }
 
   closeAddForm() {

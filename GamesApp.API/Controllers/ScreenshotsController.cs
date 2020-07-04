@@ -38,6 +38,11 @@ namespace GamesApp.API.Controllers
             _cloudinary = new Cloudinary(acc);
         }
 
+        /// <summary>
+        /// Retrieve a screenshot.
+        /// </summary>
+        /// <param name="id">The Id of the screenshot to retrieve</param>
+        /// <returns></returns>
         [HttpGet("{id}", Name = "GetScreenshot")]
         public async Task<IActionResult> GetScreenshot(int id)
         {
@@ -48,6 +53,12 @@ namespace GamesApp.API.Controllers
             return Ok(screenshot);
         }
 
+        /// <summary>
+        /// Add a screenshot to a game.
+        /// </summary>
+        /// <param name="gameId">The Id of the game a screenshot will be added to</param>
+        /// <param name="screenshotForCreationDto">The screenshot to be added</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> AddScreenshotForGame(int gameId, [FromForm]ScreenshotForCreationDto screenshotForCreationDto)
         {
@@ -87,6 +98,12 @@ namespace GamesApp.API.Controllers
             return BadRequest("Could not add the photo");
         }
 
+        /// <summary>
+        /// Remove a screenshot.
+        /// </summary>
+        /// <param name="gameId">The Id of the game a screenshot will be removed from</param>
+        /// <param name="id">The Id of the screenshot to remove</param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteScreenshot(int gameId, int id)
         {

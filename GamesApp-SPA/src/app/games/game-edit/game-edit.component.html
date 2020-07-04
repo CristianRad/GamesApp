@@ -24,16 +24,17 @@
           </div>
           <div>
             <strong>Price:</strong>
-            <p>{{ game.price }}€</p>
+            <p>€{{ game.price }}</p>
           </div>
           <div>
             <strong>Multiplayer:</strong>
-            <p>{{ game.multiplayer }}</p>
+            <p>{{ game.multiplayer | yesNo }}</p>
           </div>
         </div>
         <div class="card-footer">
           <div class="text-center">
-            <button [disabled]="!editGameForm.dirty" form="editGameForm" class="btn btn-success btn-block">Save Changes</button>
+            <button class="btn btn-success mr-2" [disabled]="!editGameForm.dirty" form="editGameForm">Save Changes</button>
+            <button class="btn btn-danger" (click)="deleteGame(game.id)">Delete Game</button>
           </div>
         </div>
       </div>
@@ -60,13 +61,15 @@
               </select>
               <h4>Price</h4>
               <input type="number" name="price" class="form-control" [(ngModel)]="game.price">
+              <div *ngIf="game">
               <h4>Multiplayer</h4>
               <label class="radio-inline">
-                <input type="radio" name="multiplayer" class="mr-3" value="true" [(ngModel)]="game.multiplayer">Yes
+                <input type="radio" name="multiplayer" class="mr-1" [value]="true" [(ngModel)]="game.multiplayer">Yes
               </label>
               <label class="radio-inline ml-3">
-                <input type="radio" name="multiplayer" class="mr-3" value="false" [(ngModel)]="game.multiplayer">No
+                <input type="radio" name="multiplayer" class="mr-1" [value]="false" [(ngModel)]="game.multiplayer">No
               </label>
+              </div>
               <h4>Cover Photo</h4>
               <input type="text" name="photoUrl" class="form-control" [(ngModel)]="game.photoUrl">
             </form>

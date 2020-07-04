@@ -32,6 +32,10 @@ namespace GamesApp.API.Data
                 .HasForeignKey(g => g.GameId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Username)
+                .IsUnique();
+
             modelBuilder.Entity<Comment>().HasQueryFilter(c => c.IsApproved);
         }
     }

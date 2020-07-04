@@ -27,6 +27,11 @@ namespace GamesApp.API.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Register a new user.
+        /// </summary>
+        /// <param name="userForRegisterDto">The user to register</param>
+        /// <returns></returns>
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
         {
@@ -44,6 +49,11 @@ namespace GamesApp.API.Controllers
             return CreatedAtRoute("GetUser", new { controller = "Users", id = createdUser.Id }, userToReturn);
         }
 
+        /// <summary>
+        /// Login a user.
+        /// </summary>
+        /// <param name="userForLoginDto">The user to log in</param>
+        /// <returns></returns>
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {
@@ -55,7 +65,8 @@ namespace GamesApp.API.Controllers
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, userFromRepo.Id.ToString()),
-                new Claim(ClaimTypes.Name, userFromRepo.Username)
+                new Claim(ClaimTypes.Name, userFromRepo.Username),
+                new Claim(ClaimTypes.Role, userFromRepo.UserRole)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));

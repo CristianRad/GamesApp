@@ -38,4 +38,14 @@ export class AuthService {
     return !this.jwtHelper.isTokenExpired(token);
   }
 
+  roleMatch(allowedRoles): boolean {
+    let isMatch = false;
+    if (this.loggedIn) {
+      const userRole = this.decodedToken.role;
+      if (allowedRoles.includes(userRole)) {
+        isMatch = true;
+      }
+    }
+    return isMatch;
+  }
 }

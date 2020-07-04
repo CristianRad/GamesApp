@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { Comment } from '../_models/comment';
+import { CommentForApproval } from '../_models/commentForApproval';
 import { environment } from 'src/environments/environment';
 
 @Injectable()
@@ -26,7 +28,7 @@ export class CommentService {
     return this.http.post(this.baseUrl + 'comments/reject/' + commentId, {});
   }
 
-  getCommentsForApproval() {
-    return this.http.get(this.baseUrl + 'comments');
+  getCommentsForApproval(): Observable<CommentForApproval[]> {
+    return this.http.get<CommentForApproval[]>(this.baseUrl + 'comments');
   }
 }

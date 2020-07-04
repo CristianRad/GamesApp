@@ -30,6 +30,11 @@ namespace GamesApp.API.Controllers
             _repo = repo;
         }
 
+        /// <summary>
+        /// Return a list of all games.
+        /// </summary>
+        /// <param name="gameParams">The filters used for retrieving games</param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetGames([FromQuery] GameParams gameParams)
         {
@@ -42,6 +47,11 @@ namespace GamesApp.API.Controllers
             return Ok(gamesToReturn);
         }
 
+        /// <summary>
+        /// Retrieve a game.
+        /// </summary>
+        /// <param name="id">The Id of the game to retrieve</param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetGame(int id)
         {
@@ -52,12 +62,38 @@ namespace GamesApp.API.Controllers
             return Ok(gameToReturn);
         }
 
+        /// <summary>
+        /// Add a game.
+        /// </summary>
+        /// <param name="gameForCreationDto">The game to be added</param>
+        /// <returns></returns>
+        [Authorize(Roles = UserRole.Admin)]
+        [HttpPost]
+        public async Task<ActionResult<GameDetailDto>> AddGame(GameForCreationDto gameForCreationDto)
+        {
+            var game = _mapper.Map<Game>(gameForCreationDto);
+
+            _context.Games.Add(game);
+            await _context.SaveChangesAsync();
+
+            var gameToReturn = _mapper.Map<GameDetailDto>(game);
+
+            return CreatedAtAction("GetGame", new { id = gameToReturn.Id }, gameToReturn);
+        }
+
+        /// <summary>
+        /// Update a game.
+        /// </summary>
+        /// <param name="id">The Id of the game to update</param>
+        /// <param name="gameForCreationDto">The updated game</param>
+        /// <returns></returns>
+        [Authorize(Roles = UserRole.Admin)]
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateGame(int id, GameForUpdateDto gameForUpdateDto)
+        public async Task<IActionResult> UpdateGame(int id, GameForCreationDto gameForCreationDto)
         {
             var gameFromRepo = await _repo.GetGame(id);
 
-            _mapper.Map(gameForUpdateDto, gameFromRepo);
+            _mapper.Map(gameForCreationDto, gameFromRepo);
 
             if (await _repo.SaveAll())
                 return NoContent();
@@ -65,6 +101,37 @@ namespace GamesApp.API.Controllers
             throw new Exception($"Updating game {id} failed on save");
         }
 
+        /// <summary>
+        /// Remove a game.
+        /// </summary>
+        /// <param name="id">The id of the game to remove</param>
+        /// <returns></returns>
+        [Authorize(Roles = UserRole.Admin)]
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<GameDto>> DeleteGame(int id)
+        {
+            var game = await _context.Games.FindAsync(id);
+
+            if (game == null)
+            {
+                return NotFound();
+            }
+
+            _context.Games.Remove(game);
+            await _context.SaveChangesAsync();
+
+            var gameToReturn = _mapper.Map<GameDto>(game);
+
+            return gameToReturn;
+        }
+
+        /// <summary>
+        /// Add a comment to a game.
+        /// </summary>
+        /// <param name="gameId">The Id of the game a comment will be added to</param>
+        /// <param name="commentForCreationDto">The comment to be added</param>
+        /// <returns></returns>
+        [Authorize]
         [HttpPost("{gameId}/comments")]
         public async Task<ActionResult<Comment>> AddComment(int gameId, CommentForCreationDto commentForCreationDto)
         {

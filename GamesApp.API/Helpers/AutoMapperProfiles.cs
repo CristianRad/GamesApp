@@ -10,6 +10,7 @@ namespace GamesApp.API.Helpers
         {
             CreateMap<Game, GameDto>();
             CreateMap<Game, GameDetailDto>();
+            CreateMap<GameForCreationDto, Game>();
 
             CreateMap<Screenshot, ScreenshotDto>();
             CreateMap<Screenshot, ScreenshotForReturnDto>();

@@ -1,4 +1,7 @@
+using System;
+using System.IO;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using AutoMapper;
 using GamesApp.API.Data;
@@ -13,6 +16,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 namespace GamesApp.API
 {
@@ -52,11 +56,40 @@ namespace GamesApp.API
                 }
             );
             services.AddScoped<LogUserActivity>();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Games API",
+                    Description = "A simple example ASP.NET Games API",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Cristian Rad",
+                        Email = "cristian.mihai.rad@gmail.com",
+                        Url = new Uri("https://github.com/CristianRad"),
+                    }
+                });
+
+                // Set the comments path for the Swagger JSON and UI.
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Games API V1");
+                c.RoutePrefix = "swagger";
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

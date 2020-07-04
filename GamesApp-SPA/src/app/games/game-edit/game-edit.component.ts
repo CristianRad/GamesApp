@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Game } from 'src/app/_models/game';
 import { AlertifyService } from 'src/app/_services/alertify.service';
@@ -22,14 +22,16 @@ export class GameEditComponent implements OnInit {
   }
 
   constructor(
-    private route: ActivatedRoute,
     private alertify: AlertifyService,
-    private gameService: GameService
+    private gameService: GameService,
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.game = data['game'];
+      console.log(this.game.multiplayer);
     });
   }
 
@@ -39,6 +41,17 @@ export class GameEditComponent implements OnInit {
       this.editGameForm.reset(this.game);
     }, error => {
       this.alertify.error(error);
+    });
+  }
+
+  deleteGame(id: number) {
+    this.alertify.confirm('Are you sure you want to remove this game from the store?', () => {
+      this.gameService.deleteGame(id).subscribe(() => {
+        this.alertify.success('Game successfully deleted');
+        this.router.navigate(['/games']);
+      }, error => {
+        this.alertify.error('Game could not be deleted');
+      });
     });
   }
 }

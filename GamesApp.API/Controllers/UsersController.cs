@@ -25,6 +25,10 @@ namespace GamesApp.API.Controllers
             _repo = repo;
         }
 
+        /// <summary>
+        /// Return a list of all users.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetUsers()
         {
@@ -35,6 +39,11 @@ namespace GamesApp.API.Controllers
             return Ok(usersToReturn);
         }
 
+        /// <summary>
+        /// Retrieve a user.
+        /// </summary>
+        /// <param name="id">The Id of the user to retrieve</param>
+        /// <returns></returns>
         [HttpGet("{id}", Name = "GetUser")]
         public async Task<IActionResult> GetUser(int id)
         {
@@ -45,6 +54,12 @@ namespace GamesApp.API.Controllers
             return Ok(userToReturn);
         }
 
+        /// <summary>
+        /// Update a user.
+        /// </summary>
+        /// <param name="id">The Id of the user to update</param>
+        /// <param name="userForUpdateDto">The updated user</param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser(int id, UserForUpdateDto userForUpdateDto)
         {

@@ -4,14 +4,14 @@
     <a class="navbar-brand" [routerLink]="['/home']">Games App</a>
 
   <ul *ngIf="loggedIn()" class="navbar-nav mr-auto">
-    <li class="nav-item" routerLinkActive="active">
+    <li class="nav-item">
       <a class="nav-link" [routerLink]="['/games']">Games</a>
     </li>
     <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link" [routerLink]="['/lists']">Lists</a>
+      <a *appHasRole="['Admin']" class="nav-link" [routerLink]="['/games/new']">Add Game</a>
     </li>
     <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link" [routerLink]="['/comments']">Comments</a>
+      <a *appHasRole="['Admin']" class="nav-link" [routerLink]="['/comments']">Approve Comments</a>
     </li>
   </ul>
 
