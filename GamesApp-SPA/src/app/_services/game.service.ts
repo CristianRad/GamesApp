@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { Comment } from '../_models/comment';
 import { Game } from '../_models/game';
 import { PaginatedResult } from '../_models/pagination';
+import { UserRating } from '../_models/userRating';
 import { environment } from 'src/environments/environment';
 
 @Injectable()
@@ -65,5 +66,17 @@ export class GameService {
 
   deleteScreenshot(gameId: number, id: number) {
     return this.http.delete(this.baseUrl + 'games/' + gameId + '/screenshots/' + id);
+  }
+
+  purchaseGame(gameId: number) {
+    return this.http.post(this.baseUrl + 'games/' + gameId + '/purchased', {});
+  }
+
+  sendGameRating(gameeId: number, rating: UserRating): Observable<UserRating> {
+    return this.http.post<UserRating>(this.baseUrl + 'games/' + gameeId + '/ratings', rating);
+  }
+
+  downloadKey(gameId: number) {
+    return this.http.get(this.baseUrl + 'games/' + gameId + '/download');
   }
 }

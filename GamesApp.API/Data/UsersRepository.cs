@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using GamesApp.API.Helpers;
 using GamesApp.API.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,6 +30,19 @@ namespace GamesApp.API.Data
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
 
             return user;
+        }
+
+        public async Task<PagedList<Game>> GetPurchasedGames(int userId, GameParams gameParams)
+        {
+            var purchasedGames = _context.PurchasedGames
+                .Include(pg => pg.Game)
+                .Include(pg => pg.Game.UserRatings).ThenInclude(ur => ur.User)
+                .Include(pg => pg.Game.UserRatings).ThenInclude(ur => ur.Game)
+                .Where(pg => pg.UserId == userId)
+                .Select(pg => pg.Game)
+                .AsQueryable();
+
+            return await PagedList<Game>.CreateAsync(purchasedGames, gameParams.PageNumber, gameParams.PageSize);
         }
 
         public async Task<IEnumerable<User>> GetUsers()

@@ -11,6 +11,7 @@ import { AuthGuard } from './_guards/auth.guard';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { GameDetailResolver } from './_resolvers/game-detail.resolver';
 import { GameListResolver } from './_resolvers/game-list.resolver';
+import { GamePurchasedResolver } from './_resolvers/game-purchased.resolver';
 import { UserEditResolver } from './_resolvers/user-edit.resolver';
 
 export const appRoutes: Routes = [
@@ -26,6 +27,8 @@ export const appRoutes: Routes = [
             },
             { path: 'games/:id', component: GameDetailComponent,
                 resolve: { game: GameDetailResolver } },
+            { path: 'purchasedgames', component: GameListComponent,
+                resolve: { games: GamePurchasedResolver } },
             { path: 'games/:id/edit', component: GameEditComponent,
                 resolve: { game: GameDetailResolver } },
             { path: 'user/edit', component: UserEditComponent,

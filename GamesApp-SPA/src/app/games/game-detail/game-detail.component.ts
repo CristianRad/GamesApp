@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from '@kolkov/ngx-gallery';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
@@ -9,6 +9,9 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { CommentService } from 'src/app/_services/comment.service';
 import { GameService } from 'src/app/_services/game.service';
+import { UserRating } from 'src/app/_models/userRating';
+import { UserService } from 'src/app/_services/user.service';
+import { User } from 'src/app/_models/user';
 
 @Component({
   selector: 'app-game-detail',
@@ -18,26 +21,35 @@ import { GameService } from 'src/app/_services/game.service';
 export class GameDetailComponent implements OnInit {
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
   game: Game;
+  gameId: number;
   currentComment: Comment;
+  currentUser: User;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
   loggedUser: string;
   isUserLoggedIn = false;
   addCommentMode = false;
   updateCommentMode = false;
+  gameIsPurchased = true;
+  hoverIndex: number;
+  ratings: number[] = [1, 2, 3, 4, 5];
+  lastRatingValue: number;
+  userRating: UserRating = new UserRating();
 
   constructor(
-    private commentService: CommentService,
-    private gameService: GameService,
+    private route: ActivatedRoute,
     private alertify: AlertifyService,
     private authService: AuthService,
-    private route: ActivatedRoute
+    private commentService: CommentService,
+    private gameService: GameService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.game = data['game'];
     });
+    this.checkIfGameIsPurchased();
 
     this.galleryOptions = [
       {
@@ -50,6 +62,9 @@ export class GameDetailComponent implements OnInit {
       }
     ];
     this.galleryImages = this.getImages();
+
+    this.gameId = Number(this.route.snapshot.paramMap.get('id'));
+    this.lastRatingValue = parseInt(localStorage.getItem(this.gameId.toString()), 10);
 
     this.isUserLoggedIn = this.authService.loggedIn();
     if (this.isUserLoggedIn) {
@@ -112,5 +127,47 @@ export class GameDetailComponent implements OnInit {
 
   getGameDetails() {
     this.gameService.getGame(this.game.id).subscribe(game => this.game = game);
+  }
+
+  sendRating(rating: number) {
+    localStorage.setItem(this.gameId.toString(), rating.toString());
+    this.lastRatingValue = rating;
+
+    this.userRating.userId = parseInt(this.authService.decodedToken.nameid, 10);
+    this.userRating.gameId = this.gameId;
+    this.userRating.ratingValue = rating;
+
+    this.gameService.sendGameRating(this.gameId, this.userRating).subscribe(
+      _ => {
+        this.alertify.success('Rating successfully submitted');
+        this.getGameDetails();
+      }
+    );
+  }
+
+  purchaseGame(gameId: number) {
+    this.gameService.purchaseGame(gameId).subscribe(
+      _ => {
+        this.alertify.success('Game successfully purchased');
+        this.gameIsPurchased = true;
+      },
+      error => {
+        this.alertify.error(error);
+      }
+    );
+  }
+
+  checkIfGameIsPurchased() {
+    this.userService.getUserPurchasedGames(parseInt(this.authService.decodedToken.nameid, 10)).subscribe(
+      resp => {
+        if (!resp.result.find(el => el.id === this.gameId)) {
+          this.gameIsPurchased = false;
+        }
+      }
+    );
+  }
+
+  constructEmptyArray(n: number): any[] {
+    return Array(Math.round(n));
   }
 }

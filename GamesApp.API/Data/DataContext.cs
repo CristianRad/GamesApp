@@ -12,6 +12,7 @@ namespace GamesApp.API.Data
         public DbSet<Screenshot> Screenshots { get; set; }
         public DbSet<PurchasedGame> PurchasedGames { get; set; }
         public DbSet<UserComment> UserComments { get; set; }
+        public DbSet<UserRating> UserRatings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

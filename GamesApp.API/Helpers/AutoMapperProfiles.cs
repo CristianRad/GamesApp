@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using AutoMapper;
 using GamesApp.API.Dtos;
 using GamesApp.API.Models;
@@ -8,8 +10,14 @@ namespace GamesApp.API.Helpers
     {
         public AutoMapperProfiles()
         {
-            CreateMap<Game, GameDto>();
-            CreateMap<Game, GameDetailDto>();
+            CreateMap<Game, GameDto>()
+                .ForMember(
+                    dest => dest.Rating,
+                    opt => opt.MapFrom(src => src.UserRatings.Count == 0 ? 0 : Math.Round(src.UserRatings.Average(userRating => userRating.RatingValue), 1)));
+            CreateMap<Game, GameDetailDto>()
+                .ForMember(
+                    dest => dest.Rating,
+                    opt => opt.MapFrom(src => src.UserRatings.Count == 0 ? 0 : Math.Round(src.UserRatings.Average(userRating => userRating.RatingValue), 1)));
             CreateMap<GameForCreationDto, Game>();
 
             CreateMap<Screenshot, ScreenshotDto>();

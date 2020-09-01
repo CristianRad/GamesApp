@@ -20,10 +20,18 @@
             <strong>Multiplayer:</strong>
             <p>{{ game.multiplayer | yesNo }}</p>
           </div>
+          <div *ngIf="game.rating != 0">
+            <strong>Rating:</strong>
+            <p><i *ngFor="let item of constructEmptyArray(game.rating)" class="rating-list star fa fa-star" name="star"></i><span class="mr-1"></span>({{ game.rating }})</p>
+          </div>
+          <div *ngIf="game.rating == 0">
+            <strong>Rating:</strong>
+            <p>Not rated yet</p>
+          </div>
         </div>
         <div class="card-footer">
           <div class="text-center">
-            <button class="btn btn-primary mr-2">Purchase</button>
+            <button *ngIf="!gameIsPurchased" class="btn btn-primary mr-2" (click)="purchaseGame(game.id)">Purchase</button>
             <button class="btn btn-secondary" (click)="toggleAddCommentForm()">Add Comment</button>
           </div>
         </div>
@@ -43,7 +51,20 @@
           </tab>
           <tab heading="Comments">
             <h4 class="mt-4">Feedback</h4>
-            <p *ngIf="game.userComments.length == 0">This game has not received feedback from users yet.</p>
+            <div>Your rating:</div>
+            <div class="row">
+              <div class="col-sm-12">
+                <ul class="list-inline rating-list" *ngFor="let rating of ratings">
+                  <li (mouseenter)="hoverIndex=rating"
+                      (mouseleave)="hoverIndex=-1"
+                      (click)="sendRating(rating)"
+                      [ngClass]="{'selected': rating <= lastRatingValue, 'hovered': rating <= hoverIndex}">
+                    <i class="fa fa-star"></i>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <p *ngIf="game.userComments.length == 0">This game has not received any comments yet.</p>
             <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="game.userComments.length > 0">
               <thead>
                 <tr>

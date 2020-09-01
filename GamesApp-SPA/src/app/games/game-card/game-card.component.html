@@ -18,6 +18,15 @@
     <h6 class="card-title text-center mb-1"><i class="fa fa-gamepad"></i>
       {{ game.title }}
     </h6>
-    <p class="card-text text-muted text-center">{{ game.type }}</p>
+    <div class="card-text text-muted text-center">{{ game.type }}</div>
+    <div class="card-text text-muted text-center">Year: {{ game.year }}</div>
+    <div *ngIf="!isPurchased" class="card-text text-muted text-center">Price: €{{ game.price }}</div>
+    <div *ngIf="game.rating != 0" class="card-text text-muted text-center">Rating: 
+      <i *ngFor="let item of constructEmptyArray(game.rating)" class="rating-list star fa fa-star" name="star"></i><span class="mr-1"></span>({{ game.rating }})
+    </div>
+    <div *ngIf="game.rating === 0" class="card-text text-muted text-center">Not rated yet</div>
+    <div *ngIf="isPurchased" class="card-text text-muted text-center">
+      <a [routerLink]="[]" (click)="getSerialKey(game.id)">Download</a>
+    </div>
   </div>
 </div>

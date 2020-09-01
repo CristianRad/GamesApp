@@ -14,6 +14,8 @@ namespace GamesApp.API.Models
         public string PhotoUrl { get; set; }
         public List<Screenshot> Screenshots { get; set; }
         public List<UserComment> UserComments { get; set; }
+        public List<UserRating> UserRatings { get; set; }
         public ICollection<PurchasedGame> GamePurchasedByUsers { get; set; }
+        public byte[] DownloadFile { get; set; }
     }
 }

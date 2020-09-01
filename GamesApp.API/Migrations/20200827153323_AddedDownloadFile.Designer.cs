@@ -3,14 +3,16 @@ using System;
 using GamesApp.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GamesApp.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20200827153323_AddedDownloadFile")]
+    partial class AddedDownloadFile
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,9 +80,6 @@ namespace GamesApp.API.Migrations
 
                     b.Property<int>("GameId")
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("SerialKey")
-                        .HasColumnType("TEXT");
 
                     b.HasKey("UserId", "GameId");
 

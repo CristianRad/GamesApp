@@ -1,11 +1,14 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-primary">
 
   <div class="container">
-    <a class="navbar-brand" [routerLink]="['/home']">Games App</a>
+    <a class="navbar-brand" [routerLink]="['/home']">GameStore</a>
 
   <ul *ngIf="loggedIn()" class="navbar-nav mr-auto">
     <li class="nav-item">
       <a class="nav-link" [routerLink]="['/games']">Games</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="['/purchasedgames']">Purchased Games</a>
     </li>
     <li class="nav-item" routerLinkActive="active">
       <a *appHasRole="['Admin']" class="nav-link" [routerLink]="['/games/new']">Add Game</a>

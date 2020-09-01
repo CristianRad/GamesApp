@@ -4,7 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Game } from '../../_models/game';
 import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
 import { AlertifyService } from 'src/app/_services/alertify.service';
+import { AuthService } from 'src/app/_services/auth.service';
 import { GameService } from 'src/app/_services/game.service';
+import { UserService } from 'src/app/_services/user.service';
 
 @Component({
   selector: 'app-game-list',
@@ -13,6 +15,7 @@ import { GameService } from 'src/app/_services/game.service';
 })
 export class GameListComponent implements OnInit {
   games: Game[];
+  purchased: boolean;
   pagination: Pagination;
   typeList = [
     { value: 'action', display: 'Action' },
@@ -27,10 +30,13 @@ export class GameListComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private alertify: AlertifyService,
-    private gameService: GameService
+    private authService: AuthService,
+    private gameService: GameService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
+    this.purchased = this.route.snapshot.url[0].path === 'purchasedgames';
     this.route.data.subscribe(data => {
       this.games = data['games'].result;
       this.pagination = data['games'].pagination;
@@ -55,14 +61,27 @@ export class GameListComponent implements OnInit {
   }
 
   loadGames() {
-    this.gameService
-      .getGames(this.pagination.currentPage, this.pagination.itemsPerPage, this.gameParams)
-      .subscribe((res: PaginatedResult<Game[]>) => {
-        this.games = res.result;
-        this.pagination = res.pagination;
-      }, error => {
-        this.alertify.error(error);
-      }
-    );
+    if (this.purchased) {
+      this.userService
+        .getUserPurchasedGames(
+          parseInt(this.authService.decodedToken.nameid, 10), this.pagination.currentPage, this.pagination.itemsPerPage, this.gameParams)
+        .subscribe((res: PaginatedResult<Game[]>) => {
+          this.games = res.result;
+          this.pagination = res.pagination;
+        }, error => {
+          this.alertify.error(error);
+        }
+      );
+    } else {
+      this.gameService
+        .getGames(this.pagination.currentPage, this.pagination.itemsPerPage, this.gameParams)
+        .subscribe((res: PaginatedResult<Game[]>) => {
+          this.games = res.result;
+          this.pagination = res.pagination;
+        }, error => {
+          this.alertify.error(error);
+        }
+      );
+    }
   }
 }

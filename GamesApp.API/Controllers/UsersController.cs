@@ -55,6 +55,29 @@ namespace GamesApp.API.Controllers
         }
 
         /// <summary>
+        /// Retrieves the list of games purchased by a user.
+        /// </summary>
+        /// <param name="id">The Id of the user whose purchased games are to be retrieved</param>
+        /// <param name="gameParams">The filters used for retrieving games</param>
+        /// <returns></returns>
+        [HttpGet("{id}/purchasedgames")]
+        public async Task<IActionResult> GetUsersPurchasedGames(int id, [FromQuery] GameParams gameParams)
+        {
+            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+
+            var games = await _repo.GetPurchasedGames(id, gameParams);
+            
+            var gamesToReturn = _mapper.Map<IEnumerable<GameDto>>(games);
+
+            Response.AddPagination(games.CurrentPage, games.PageSize, games.TotalCount, games.TotalPages);
+
+            return Ok(gamesToReturn);
+        }
+
+        /// <summary>
         /// Update a user.
         /// </summary>
         /// <param name="id">The Id of the user to update</param>

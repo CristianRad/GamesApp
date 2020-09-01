@@ -15,5 +15,6 @@ namespace GamesApp.API.Dtos
         public string PhotoUrl { get; set; }
         public List<ScreenshotDto> Screenshots { get; set; }
         public List<CommentDto> UserComments { get; set; } = new List<CommentDto>();
+        public double Rating { get; set; }
     }
 }

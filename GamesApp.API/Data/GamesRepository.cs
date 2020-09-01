@@ -39,6 +39,8 @@ namespace GamesApp.API.Data
                 .Include(g => g.Screenshots)
                 .Include(g => g.UserComments).ThenInclude(uc => uc.Comment)
                 .Include(g => g.UserComments).ThenInclude(uc => uc.User)
+                .Include(g => g.UserRatings).ThenInclude(ur => ur.Game)
+                .Include(g => g.UserRatings).ThenInclude(ur => ur.User)
                 .FirstOrDefaultAsync(g => g.Id == id);
 
             return game;
@@ -46,7 +48,12 @@ namespace GamesApp.API.Data
 
         public async Task<PagedList<Game>> GetGames(GameParams gameParams)
         {
-            var games = _context.Games.Include(g => g.Screenshots).OrderByDescending(g => g.Year).AsQueryable();
+            var games = _context.Games
+                .Include(g => g.Screenshots)
+                .Include(g => g.UserRatings).ThenInclude(ur => ur.Game)
+                .Include(g => g.UserRatings).ThenInclude(ur => ur.User)
+                .OrderByDescending(g => g.Year)
+                .AsQueryable();
 
             if (gameParams.MinPrice != 0 || gameParams.MaxPrice != 100)
                 games = games.Where(g => g.Price >= gameParams.MinPrice && g.Price <= gameParams.MaxPrice);

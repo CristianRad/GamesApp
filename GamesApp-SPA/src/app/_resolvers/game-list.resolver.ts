@@ -10,7 +10,7 @@ import { GameService } from '../_services/game.service';
 @Injectable()
 export class GameListResolver implements Resolve<Game[]> {
     pageNumber = 1;
-    pageSize = 12;
+    pageSize = 6;
 
     constructor(
         private gameService: GameService,

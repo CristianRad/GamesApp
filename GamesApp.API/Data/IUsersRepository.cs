@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using GamesApp.API.Helpers;
 using GamesApp.API.Models;
 
 namespace GamesApp.API.Data
@@ -11,5 +12,6 @@ namespace GamesApp.API.Data
          Task<bool> SaveAll();
          Task<IEnumerable<User>> GetUsers();
          Task<User> GetUser(int id);
+         Task<PagedList<Game>> GetPurchasedGames(int userId, GameParams gameParams);
     }
 }

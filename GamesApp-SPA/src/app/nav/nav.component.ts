@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../_services/auth.service';
-import { AlertifyService } from '../_services/alertify.service';
 import { Router } from '@angular/router';
+
+import { AlertifyService } from '../_services/alertify.service';
+import { AuthService } from '../_services/auth.service';
+import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-nav',
@@ -10,10 +12,12 @@ import { Router } from '@angular/router';
 })
 export class NavComponent implements OnInit {
   model: any = {};
+  budget: number;
 
   constructor(
     public authService: AuthService,
     private alertify: AlertifyService,
+    private userService: UserService,
     private router: Router
   ) { }
 
@@ -42,5 +46,4 @@ export class NavComponent implements OnInit {
     this.alertify.message('Logged out');
     this.router.navigate(['/home']);
   }
-
 }

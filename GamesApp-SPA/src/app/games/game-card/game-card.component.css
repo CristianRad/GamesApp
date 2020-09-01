@@ -39,3 +39,12 @@ img.card-img-top.cover {
 .animate {
     transition: all 0.3s ease-in-out;
 }
+
+.rating-list {
+    display: inline-block;
+    list-style: none;
+}
+
+.rating-list.star {
+    color: #ffd700;
+}

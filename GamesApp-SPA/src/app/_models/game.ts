@@ -11,4 +11,5 @@ export interface Game {
     description?: string;
     screenshots?: Screenshot[];
     userComments?: any[];
+    rating: number;
 }

@@ -13,3 +13,17 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.game-list-background { 
+  background: url("./assets/background.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-width: 1024px;
+  width: 100%;
+}
+
+.game-list-background::-webkit-scrollbar {
+  display: none;
+}

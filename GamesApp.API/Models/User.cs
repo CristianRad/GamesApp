@@ -16,6 +16,7 @@ namespace GamesApp.API.Models
         public DateTime LastActive { get; set; }
         public string UserRole { get; set; } = "User";
         public List<UserComment> UserComments { get; set; }
+        public List<UserRating> UserRatings { get; set; }
         public ICollection<PurchasedGame> PurchasedGames { get; set; }
     }
 }

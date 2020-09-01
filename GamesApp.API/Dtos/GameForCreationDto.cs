@@ -9,5 +9,6 @@ namespace GamesApp.API.Dtos
         public int Price { get; set; }
         public bool Multiplayer { get; set; }
         public string PhotoUrl { get; set; }
+        public byte[] DownloadFile { get; set; }
     }
 }

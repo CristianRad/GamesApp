@@ -34,6 +34,7 @@ import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { YesNoPipe } from './_pipes/yes-no.pipe';
 import { GameDetailResolver } from './_resolvers/game-detail.resolver';
 import { GameListResolver } from './_resolvers/game-list.resolver';
+import { GamePurchasedResolver } from './_resolvers/game-purchased.resolver';
 import { UserEditResolver } from './_resolvers/user-edit.resolver';
 import { AlertifyService } from './_services/alertify.service';
 import { AuthService } from './_services/auth.service';
@@ -102,6 +103,7 @@ export function tokenGetter() {
       ErrorInterceptorProvider,
       GameDetailResolver,
       GameListResolver,
+      GamePurchasedResolver,
       GameService,
       PreventUnsavedChanges,
       UserEditResolver,

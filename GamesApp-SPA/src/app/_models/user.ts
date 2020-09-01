@@ -6,4 +6,6 @@ export interface User {
     photoUrl: string;
     lastActive: Date;
     created: Date;
+    userRatings: number[];
+    userComments: string[];
 }
