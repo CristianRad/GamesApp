@@ -64,7 +64,8 @@ export class GameDetailComponent implements OnInit {
     this.galleryImages = this.getImages();
 
     this.gameId = Number(this.route.snapshot.paramMap.get('id'));
-    this.lastRatingValue = parseInt(localStorage.getItem(this.gameId.toString()), 10);
+    this.currentUser = this.authService.currentUser;
+    this.getRatingValue();
 
     this.isUserLoggedIn = this.authService.loggedIn();
     if (this.isUserLoggedIn) {
@@ -130,7 +131,8 @@ export class GameDetailComponent implements OnInit {
   }
 
   sendRating(rating: number) {
-    localStorage.setItem(this.gameId.toString(), rating.toString());
+    const key = `${this.gameId.toString()}-${this.currentUser.id}`;
+    localStorage.setItem(key, rating.toString());
     this.lastRatingValue = rating;
 
     this.userRating.userId = parseInt(this.authService.decodedToken.nameid, 10);
@@ -166,6 +168,12 @@ export class GameDetailComponent implements OnInit {
         }
       }
     );
+  }
+
+  getRatingValue() {
+    const key = `${this.gameId.toString()}-${this.currentUser.id}`;
+    this.lastRatingValue = parseInt(localStorage.getItem(key), 10);
+    
   }
 
   constructEmptyArray(n: number): any[] {

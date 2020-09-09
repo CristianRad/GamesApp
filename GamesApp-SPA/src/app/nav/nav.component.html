@@ -18,7 +18,7 @@
     </li>
   </ul>
 
-  <div class="mr-2 text-light">
+  <div *ngIf="loggedIn()" class="mr-2 text-light">
     Budget: €{{ authService.currentUser.budget }}
   </div>
   <div *ngIf="loggedIn()" class="dropdown" dropdown>
