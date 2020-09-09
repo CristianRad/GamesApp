@@ -148,8 +148,9 @@ export class GameDetailComponent implements OnInit {
   purchaseGame(gameId: number) {
     this.gameService.purchaseGame(gameId).subscribe(
       _ => {
-        this.alertify.success('Game successfully purchased');
         this.gameIsPurchased = true;
+        this.authService.syncCurrentUser();
+        this.alertify.success('Game successfully purchased');
       },
       error => {
         this.alertify.error(error);

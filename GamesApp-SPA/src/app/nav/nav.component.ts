@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 
 import { AlertifyService } from '../_services/alertify.service';
 import { AuthService } from '../_services/auth.service';
-import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-nav',
@@ -17,7 +16,6 @@ export class NavComponent implements OnInit {
   constructor(
     public authService: AuthService,
     private alertify: AlertifyService,
-    private userService: UserService,
     private router: Router
   ) { }
 

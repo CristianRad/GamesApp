@@ -18,6 +18,9 @@
     </li>
   </ul>
 
+  <div class="mr-2 text-light">
+    Budget: €{{ authService.currentUser.budget }}
+  </div>
   <div *ngIf="loggedIn()" class="dropdown" dropdown>
     <span class="mr-1">
       <img src="{{ authService.currentUser.photoUrl }}" alt="">

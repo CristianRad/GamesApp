@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 
 import { User } from '../_models/user';
 import { environment } from 'src/environments/environment';
+import { UserService } from './user.service';
 
 @Injectable()
 export class AuthService {
@@ -13,7 +14,10 @@ export class AuthService {
   decodedToken: any;
   currentUser: User;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private userService: UserService
+  ) { }
 
   login(model: any) {
     return this.http.post(this.baseUrl + 'login', model).pipe(
@@ -35,7 +39,21 @@ export class AuthService {
 
   loggedIn() {
     const token = localStorage.getItem('token');
-    return !this.jwtHelper.isTokenExpired(token);
+    if (!this.jwtHelper.isTokenExpired(token)) {
+      this.decodedToken = this.jwtHelper.decodeToken(token);
+      this.currentUser = JSON.parse(localStorage.getItem('user')) as User;
+      return true;
+    }
+    return false;
+  }
+
+  syncCurrentUser() {
+    this.userService.getUser(this.currentUser.id).subscribe(
+      user => {
+        localStorage.setItem('user', JSON.stringify(user));
+        this.currentUser = user;
+      }
+    );
   }
 
   roleMatch(allowedRoles): boolean {
